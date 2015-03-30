@@ -1,0 +1,139 @@
+%\documentclass{beamer}
+%\usetheme{Pittsburgh} 
+\documentclass{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{default}
+\usepackage[procnames]{listings}
+\usepackage{graphicx}
+%\usepackage[toc,page]{appendix}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{csvsimple}
+
+
+%Bibliogrpahy?
+%\usepackage{bibentry}
+%\nobibliography*
+%\bibentry{ }
+
+
+%Java
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+\lstset{language=Java,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{javapurple}\bfseries,
+    stringstyle=\color{javared},
+    commentstyle=\color{javagreen},
+    morecomment=[s][\color{javadocblue}]{/**}{*/},
+    breaklines = true,
+    columns=fullflexible,
+    %Numbering and tabs
+    %numbers=left,
+    %numberstyle=\tiny\color{gray},
+    %stepnumber=2,
+    %numbersep=1em,
+    tabsize=4,
+    showspaces=false,
+    showstringspaces=false}
+
+\begin{document}
+
+\title{Manual motion observation}
+\subtitle{Assignment No. 1}
+\author{
+  Matin, Maryam \\
+  Quignon, Christophe
+  %Familyname, Name
+} 
+\date{\today}
+
+
+\maketitle
+
+
+
+\section{Experimental setup}
+\subsection{Robot Design}
+%especially how you mark the stop position and how you ensure identical start positions.
+\begin{itemize}
+\item \href{http://www.damienkee.com/home/2011/8/20/domabot-classroom-robot-design.html}{Domabot}
+\end{itemize}
+
+
+\subsection{Program Parameters}
+\begin{itemize}
+\item
+\end{itemize}
+
+
+\subsection{Code (see code.java)}
+As given in code.java:
+\lstinputlisting[language=Java]{code.java}
+
+
+\section{Observations}
+\subsection{Execution}
+\begin{itemize}
+\item
+\end{itemize}
+
+
+\subsection{Data (see data.csv)}
+\csvautotabular[separator=semicolon]{data.csv}
+
+\subsection{Accuracy}
+%including how you arrived at these estimates and why they are plausible.
+\begin{itemize}
+\item
+\end{itemize}
+
+\subsection{Precision}
+%including how you arrived at these estimates and why they are plausible.
+\begin{itemize}
+\item
+\end{itemize}
+
+\section{Summary}
+\subsection{}
+\begin{itemize}
+\item
+\end{itemize}
+
+
+%CONTENTS
+%NOTES
+
+
+%COPY AND PASTE FROM HERE
+
+%\begin{enumerate}
+% \item 
+%\end{enumerate}
+
+%\href{link}{text}
+
+%\begin[Language=Python]{lstlisting}
+%#PYTHON CODE HERE
+%\end{lstlisting}
+
+%\lstinputlisting[language=Java]{ }
+
+%\csvautotabular[separator=semicolon]{data.csv}
+
+%\begin{figure}
+% \center
+% \includegraphics[width= cm]{img/ }
+% \caption{}
+%\end{figure}
+
+%BIBLIOGRPAHY?
+\bibliographystyle{plain}%amsalpha
+\bibliography{Top30.bib}
+%\bibentry{}
+
+\end{document}
