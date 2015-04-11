@@ -22,5 +22,7 @@ for file in files:
     pyplot.scatter(mean_x, mean_y, color = 'g', zorder = 1, s = 40, alpha = 0.5)
     pyplot.scatter(min(x), min(y), color = 'b', zorder = 3, s = 40, alpha = 0.5)
     pyplot.scatter(max(x), max(y), color = 'r', zorder = 2, s = 40, alpha = 0.5)
+    #pyplot.boxplot(x, 0,'rs',0)
+    #pyplot.boxplot(y)
 
     pyplot.show()
