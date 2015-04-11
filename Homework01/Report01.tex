@@ -225,38 +225,49 @@ We marked the landing position, as it was far off the point cloud up to that poi
 
 
 \section{Data}
-\subsection{Measured points for the driving ahead.}
- (See data\_ahead.csv)\\
-\csvautotabular[separator=semicolon]{data_ahead.csv}
 
-%\begin{figure}
-% \center
-% \includegraphics[width= 8cm]{img/plot_left.jpg}
-% \caption{Plot of the measurements of the left arc.}
-% \label{fig:data_left}
-%\end{figure}
+ \begin{figure}[h]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \csvautotabular[separator=semicolon]{data_ahead.csv}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+   \includegraphics[width= 8cm]{img/data_ahead.png}  
+\end{minipage}
+\caption{Data points and visualisation of movement ahead. Measurements in cm. (See data\_ahead.csv)}
+\label{fig:data_ahead}
+\end{figure}
 
-\subsection{Measured points for the driving to the left.}
- (See data\_left.csv)\\
-\csvautotabular[separator=semicolon]{data_left.csv}
-%\begin{figure}
-% \center
-% \includegraphics[width= 8cm]{img/plot_right.jpg}
-% \caption{Plot of the measurements of the right arc.}
-% \label{fig:data_right}
-%\end{figure}
+\begin{figure}[h]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \csvautotabular[separator=semicolon]{data_left.csv}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+   \includegraphics[width= 8cm]{img/data_left.png}  
+\end{minipage}
+\caption{Data points and visualisation of the left arc. The wheel failure is marked red. Measurements in cm.  (See data\_left.csv)}
+\label{fig:data_left}
+\end{figure}
 
-\subsection{Measured points for the driving to the right.}
- (See data\_right.csv)\\
-\csvautotabular[separator=semicolon]{data_right.csv}
-
-%\begin{figure}
-% \center
-% \includegraphics[width= 8cm]{img/plot_ahead.jpg}
-% \caption{Plot of the measurements of movement ahead.}
-% \label{fig:data_ahead}
-%\end{figure}
-
+\begin{figure}[h]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \csvautotabular[separator=semicolon]{data_right.csv}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+   \includegraphics[width= 8cm]{img/data_right.png}  
+\end{minipage}
+\caption{Data points and visualisation of the right arc. Measurements in cm. (See data\_right.csv)}
+\label{fig:data_left}
+\end{figure}
+ 
 \section{Summary}
 \begin{itemize}
 \item
