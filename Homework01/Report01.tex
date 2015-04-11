@@ -144,14 +144,6 @@ After writing and tuning the program we set up the execution in several steps:
 \end{figure}
 
 \begin{figure}
- \center
- \includegraphics[width= 4cm]{img/pen_adjust.jpg}
- \caption{Calibration of the pen}
- \label{fig:pen_calib}
-\end{figure}
-
-
-\begin{figure}
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
@@ -168,10 +160,19 @@ After writing and tuning the program we set up the execution in several steps:
 
 \begin{figure}
  \center
+ \includegraphics[width= 4cm]{img/pen_adjust.jpg}
+ \caption{Calibration of the pen}
+ \label{fig:pen_calib}
+\end{figure}
+
+\begin{figure}
+ \center
  \includegraphics[width= 4cm]{img/wheel_adjust.jpg}
  \caption{The starting position of the Domabot with the help of its shadow.}
  \label{fig:setup}
 \end{figure}
+
+
 
 \begin{itemize}
 \item
@@ -182,7 +183,7 @@ After writing and tuning the program we set up the execution in several steps:
 \subsection{Execution}
 
 We run 20 points on each direction. First ahead, then left then right. The points showed up without any pattern and no particular order. But there was, as expected a visible difference in the spread for every direction.\\
-In the last third of the 16th run while going to the left, the right wheel came off the axis of the robot (See Figure~\ref{fig:pen_calib}).
+In the last third of the 16\textsuperscript{th} run while going to the left, the right wheel came off the axis of the robot (See Figure~\ref{fig:failure}).
 We marked the landing position, as it was far off the point cloud up to that point to render it as a failure during the analysis. We fixed the wheel back on the axis and continued the experiment. All following points were also marked but showed no extraordinary spread. To end up with 20 measurement without the failure, we added one more.
 
 \begin{figure}
