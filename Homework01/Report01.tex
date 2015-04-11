@@ -63,23 +63,23 @@
 We choose to use the "\href{http://www.damienkee.com/home/2011/8/20/domabot-classroom-robot-design.html}{Domabot}" design (see Figure~\ref{fig:front_view}) in order to minimize the measurement errors. This design has several advantages in this regard:
 \begin{itemize}
 \item The Motors are directly attached to the brick. Thus the points where distortion can happen are minimized.
-\item The Center of gravity is very low which increases stability.
+\item The center of gravity is very low which increases stability.
 \item The track width is big which also increases stability.
 \item The free running wheel (see Figure~\ref{fig:free_wheel}) is rigid and quite narrow. Thus it adds less error by friction or deformation.
 \end{itemize}
 
-To mark the endpoints of our measures, we designed a pen holder  (See Figure~\ref{fig:pen}) that could adapt to pen size, and be flipped up (See Figure~\ref{fig:pen_up}) and down (See Figure~\ref{fig:pen_down}) to not hinder the movement.
+To mark the endpoints of our measures, we designed a pen holder  (See Figure~\ref{fig:pen}) that could adapt to pen size, and be flipped up and down (See Figure~\ref{fig:pen_position}) to not hinder the movement.
 
 \begin{figure}
  \center
- \includegraphics[width= 6cm]{img/robot_front.jpg}
+ \includegraphics[width= 8cm]{img/robot_front.jpg}
  \caption{The Domabot in front view without pen.}
  \label{fig:front_view}
 \end{figure}
 
 \begin{figure}
  \center
- \includegraphics[width= 6cm]{img/steering_wheel.jpg}
+ \includegraphics[width= 8cm]{img/steering_wheel.jpg}
  \caption{Detail view of the free wheel}
  \label{fig:free_wheel}
 \end{figure}
@@ -93,7 +93,7 @@ The program at its core uses the \texttt{
 \subsection{Program Parameters}
 \begin{itemize}
 \item wheelDiameter = 5.6f\\
-A wheel diameter is specified as 5.6cm in the Handbook and on the wheel itself.
+A wheel diameter is specified as 5.8cm in the Handbook and on the wheel itself.
 
 \item trackWidth = 17.6f\
 The track width of the robot, measured in cm.
@@ -134,45 +134,41 @@ After writing and tuning the program we set up the execution in several steps:
 	\item Wait for the robot to execute
 	\item Lower the pen to mark its arrival position
 \end{enumerate}
-
-%Measurement
 \end{itemize}
 
 \begin{figure}
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.5\linewidth]{img/pen.jpg}
-  \captionof{figure}{Detail view of the pen holder}
-  \label{fig:pen}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.5\linewidth]{img/pen_adjust.jpg}
-  \captionof{figure}{Calibration of the pen/}
-  \label{fig:pen_calib}
-\end{minipage}
-\end{figure}
-
-\begin{figure}
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.5\linewidth]{img/pen_up.jpg}
-  \captionof{figure}{The Domabot with lifted pen.}
-  \label{fig:pen_up}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.5\linewidth]{img/pen_down.jpg}
-  \captionof{figure}{The Domabot with lowered pen.}
-  \label{fig:pen_down}
-\end{minipage}
+ \center
+ \includegraphics[width= 8cm]{img/pen.jpg}
+ \caption{Detail view of the pen holder}
+ \label{fig:pen}
 \end{figure}
 
 \begin{figure}
  \center
- \includegraphics[width= 6cm]{img/wheel_adjust.jpg}
+ \includegraphics[width= 4cm]{img/pen_adjust.jpg}
+ \caption{Calibration of the pen}
+ \label{fig:pen_calib}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/pen_up.jpg}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/pen_down.jpg}
+  
+\end{minipage}
+\caption{The two pen positions of the robot.}
+\label{fig:pen_position}
+\end{figure}
+
+\begin{figure}
+ \center
+ \includegraphics[width= 4cm]{img/wheel_adjust.jpg}
  \caption{The starting position of the Domabot with the help of its shadow.}
  \label{fig:setup}
 \end{figure}
@@ -184,20 +180,39 @@ After writing and tuning the program we set up the execution in several steps:
 
 \section{Observations}
 \subsection{Execution}
+
+We run 20 points on each direction. First ahead, then left then right. The points showed up without any pattern and no particular order. But there was, as expected a visible difference in the spread for every direction.\\
+In the last third of the 16th run while going to the left, the right wheel came off the axis of the robot (See Figure~\ref{fig:pen_calib}).
+We marked the landing position, as it was far off the point cloud up to that point to render it as a failure during the analysis. We fixed the wheel back on the axis and continued the experiment. All following points were also marked but showed no extraordinary spread. To end up with 20 measurement without the failure, we added one more.
+
 \begin{figure}
  \center
- \includegraphics[width= 6cm]{img/wheel_failure.jpg}
+ \includegraphics[width= 8cm]{img/wheel_failure.jpg}
  \caption{Image of the wheel failure}
  \label{fig:failure}
 \end{figure}
-
 
 \begin{itemize}
 \item
 \end{itemize}
 
+\subsection{Accuracy}
+%including how you arrived at these estimates and why they are plausible.
+\begin{itemize}
+\item
+\end{itemize}
 
-\subsection{Data}
+\subsection{Precision}
+%including how you arrived at these estimates and why they are plausible.
+\begin{itemize}
+\item
+\end{itemize}
+
+
+\subsection{Measurement}
+
+
+\section{Data}
 \subsubsection{Measure points for the driving ahead.}
  (See data\_ahead.csv)\\
 \csvautotabular[separator=semicolon]{data_ahead.csv}
@@ -213,42 +228,24 @@ After writing and tuning the program we set up the execution in several steps:
 
 %\begin{figure}
 % \center
-% \includegraphics[width= 6cm]{img/plot_left.jpg}
+% \includegraphics[width= 8cm]{img/plot_left.jpg}
 % \caption{Plot of the measurements of the left arc.}
 % \label{fig:data_left}
 %\end{figure}
 
 %\begin{figure}
 % \center
-% \includegraphics[width= 6cm]{img/plot_right.jpg}
+% \includegraphics[width= 8cm]{img/plot_right.jpg}
 % \caption{Plot of the measurements of the right arc.}
 % \label{fig:data_right}
 %\end{figure}
 
 %\begin{figure}
 % \center
-% \includegraphics[width= 6cm]{img/plot_ahead.jpg}
+% \includegraphics[width= 8cm]{img/plot_ahead.jpg}
 % \caption{Plot of the measurements of movement ahead.}
 % \label{fig:data_ahead}
 %\end{figure}
-
-\section{Observations}
-\subsection{Execution}
-We run 20 points on each direction. First ahead, then left then right. The points showed up without any pattern and no particular order. But there was, as expected a visible difference in the spread for every direction.\\
-In the last third of the 16th run while going to the left, the right wheel came off the axis of the robot (See Figure~\ref{fig:pen_calib}).
-We marked the landing position, as it was far off the point cloud up to that point to render it as a failure during the analysis. We fixed the wheel back on the axis and continued the experiment. All following points were also marked but showed no extraordinary spread. To end up with 20 measurement without the failure, we added one more.
-
-\subsection{Accuracy}
-%including how you arrived at these estimates and why they are plausible.
-\begin{itemize}
-\item
-\end{itemize}
-
-\subsection{Precision}
-%including how you arrived at these estimates and why they are plausible.
-\begin{itemize}
-\item
-\end{itemize}
 
 \section{Summary}
 \subsection{}
