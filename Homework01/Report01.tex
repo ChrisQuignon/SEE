@@ -103,8 +103,10 @@ The distance the robot aims to dive in cm.
 
 \item radius\\
  = $250 * \pi \ 180 * 90 = 392.699$\\
- We decided to go with an angular description of the arc in degree for better understanding and a more meaningful tuning. The function needs a radius in cm as input, but we kept the calculation in the code and thus documented best.
-
+ We decided to go with an angular description of the arc in degree for better understanding and a more meaningful tuning. The function needs a radius in cm as input, but we kept the calculation in the code and thus documented best.\\
+ Please not that 250 is actually not an angle value in degree!\\
+ The angle is $90/392.699 = 0.229 radians$ or $13.13^{\circ} degree$.
+ 
 \item Delay.msDelay(500)\\
 The direction of turn is selected by pushing a button. Before starting the movement, we wait for half a second, so the operator can remove the finger and the robot can recover from the push.
 \end{itemize}
@@ -174,11 +176,6 @@ After writing and tuning the program we set up the execution in several steps:
 
 
 
-\begin{itemize}
-\item
-\end{itemize}
-
-
 \section{Observations}
 \subsection{Execution}
 
@@ -193,36 +190,40 @@ We marked the landing position, as it was far off the point cloud up to that poi
  \label{fig:failure}
 \end{figure}
 
-\subsection{Accuracy}
-%including how you arrived at these estimates and why they are plausible.
-\begin{itemize}
-\item
-\end{itemize}
-
-\subsection{Precision}
-%including how you arrived at these estimates and why they are plausible.
-\begin{itemize}
-\item
-\end{itemize}
-
-
 \subsection{Measurement}
-%TERMS:
-%as on slide 14 and 16
-\begin{itemize}
-\item Measurand:
-\item Measurement:
-\item Measurement range:
-\item Suppression rate:
-\item Measurement result:
-\item Device Under  Test (DUT): 
-\item Measuring System:
-\item Measuring principle
-\item Measuring Method:
-\item Sensitivity:
-\end{itemize}
-%Measurand
+The used measuring facilities are a retractable and a 50 cm ruler, both with sensitivity of 1 millimeter. The origin of the coordinate system for our measurements is the point where the pen touches the paper vertically when the device is aligned in the starting box position. From that point the robots moves 90.0 cm to the front or makes a curve to the left or right. We drew a 1*1 cm2 width check-board, starting at 80 cm from y axis, to facilitate the measuring process.\\
 
+For the forward move the true value is (0, 90) and the following accuracy and precision are derived: (See calculations.ods)
+\begin{itemize}
+\item	Accuracy over x axis  = 0.1
+\item	Accuracy over y axis  = 0.0
+
+\item	Precision over x axis = 1.0
+\item	Precision over y axis = 0.0
+\end{itemize}
+
+
+For the left turn the true values are calculated as (-10.266, 89.206) and the following accuracy and precision are derived:
+
+\begin{itemize}	
+\item	Accuracy over x axis  = -2.5
+\item	Accuracy over y axis  = -0.4
+
+\item	Precision over x axis = 0.6
+\item	Precision over y axis = 0.2
+\end{itemize}
+
+
+For the right turn the true values are calculated as (10.266, 89.206) and the following accuracy and precision are derived:
+
+\begin{itemize}	
+\item	Accuracy over x axis  = 1.3
+\item	Accuracy over y axis  = -0.4
+
+\item	Precision over x axis = 1.3
+\item	Precision over y axis = 0.0
+\end{itemize}
+%TERMS:
 
 \section{Data}
 
@@ -269,9 +270,22 @@ We marked the landing position, as it was far off the point cloud up to that poi
 \end{figure}
  
 \section{Summary}
+The process of finding these numbers and also random errors over x and y axises are also included in the attached tables. 
+From the numbers it can be seen that the there's a high systematic error over x axis specially for the left turn. Meanwhile it can be also observed that the precision over x axis is also higher. 
+It can be also observed that in each of the 3 runs of the experiment (forward, left and right) , the point clouds were almost accumulated as 2 separate bunch of points next to each other. This may be due to a systematic error within the two motors.
+
+\subsection{Possible sources of error}
+
 \begin{itemize}
-\item
+\item The coordinate system and the measurement instrument had millimeter sensitivity however in some cases the true measurement of the point required less than millimeter sensitivity. In these cases we used the closest observed measure for that point ( For example: (2.1, 88.9) instead of (2.17, 88.86)) 
+\item Placing the robot manually at the starting position at each iteration , imposes some error to the overall result.
+\item Differential drive can by itself have small errors in wheel rotation measurements. When these small errors are accumulated, they can cause small drifting and the robot may end up in slightly different positions. 
+\item The number of runs for each direction seems to be insufficient and this has made the interpretations harder. 
+\item Some outliers may be due to failure in parts of the robot like wheels, for instance we saw an outlier in left turn because the right wheel came off its axis.  
+\item Even though we tried to stick the papers such that they have no gaps and no overlays to minimize the errors, there might be still a small error imposed because of this intersection and the fact that paper is not totally flat.
+\item The wheels may also slip on the surface and this can make bigger errors.
 \end{itemize}
+
 
 
 %CONTENTS
