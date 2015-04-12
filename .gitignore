@@ -1,7 +1,11 @@
 *~
 
+Homework01/img
+
 *.pdf
 *.zip
+
+*.tex.swp
 
 ##LEJOS
 *.nxj
