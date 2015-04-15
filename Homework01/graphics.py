@@ -1,11 +1,13 @@
 from matplotlib import pyplot
 import csv
 import glob
+from math import sqrt, tan
 
 #NEEDS scipy 0.12 (anaconda)
 # from scipy.stats import chi2_contingency
 
-files = glob.glob('*.csv')
+# files = glob.glob('*.csv')
+files = ['data_left.csv', 'data_ahead.csv', 'data_right.csv']
 #files = glob.glob('data_ahead.csv')
 
 xs = []
@@ -36,13 +38,13 @@ for file in files:
 for i in range(len(xs)):
 
     pyplot.scatter(xs[i], ys[i], c = 'black', marker = 'x', zorder = 4)
-
-    #pyplot.scatter(mean_x, mean_y, color = 'g', zorder = 1, s = 40, alpha = 0.5)
+    # pyplot.scatter(m_x, m_y, color = 'g', zorder = 1, s = 40, alpha = 0.5)
 
     # #PLOT FAILURE
     # if len(xs[i]) > 20:
     #     pyplot.scatter(x[20:], y[20:], c = 'red', marker = 'x', zorder = 4)
 
+    pyplot.title('Cartesian Coordinates ' + files[i][:-4])
     pyplot.axes().set_aspect('equal', 'datalim')
     pyplot.grid(True)
     pyplot.locator_params(nbins=10)
@@ -63,23 +65,41 @@ for i in range(len(xs)):
     y_norm.append([y - my[i] for y in ys[i]])
 
 ##show Names
-# pyplot.title('X Axis')
-# pyplot.boxplot(x_norm)
-# pyplot.xticks([1, 2, 3], names, rotation='horizontal')
-# pyplot.savefig('img/BoxplotX.png',dpi=50)
-# # pyplot.show()
-# pyplot.clf()
-#
-# pyplot.title('Y Axis')
-# pyplot.boxplot(y_norm, vert=False)
-# pyplot.yticks([1, 2, 3], names, rotation='vertical')
-# pyplot.savefig('img/BoxplotY.png',dpi=50)
+pyplot.title('X Axis')
+pyplot.grid(True)
+pyplot.locator_params(nbins=10)
+pyplot.boxplot(xs, vert=False)
+pyplot.yticks([1, 2, 3], names, rotation='vertical')
+pyplot.savefig('img/BoxplotX.png',dpi=50)
 # pyplot.show()
+pyplot.clf()
 
-# pyplot.boxplot(y_norm)
-# # pyplot.setp(ax1, xticklabels=["a", "b", ])
-# pyplot.xticks(y_norm, ["a", "b", "c"], rotation='vertical')
+pyplot.title('Normalized X Axis')
+pyplot.grid(True)
+pyplot.locator_params(nbins=10)
+pyplot.boxplot(x_norm)
+pyplot.xticks([1, 2, 3], names)
+pyplot.savefig('img/BoxplotXNorm.png',dpi=50)
 # pyplot.show()
+pyplot.clf()
+
+pyplot.title('Y Axis')
+pyplot.grid(True)
+pyplot.locator_params(nbins=10)
+pyplot.boxplot(ys)
+pyplot.xticks([1, 2, 3], names, rotation='horizontal')
+pyplot.savefig('img/BoxplotY.png',dpi=50)
+# pyplot.show()
+pyplot.clf()
+
+pyplot.title('Normalized Y Axis')
+pyplot.grid(True)
+pyplot.locator_params(nbins=10)
+pyplot.boxplot(y_norm)
+pyplot.xticks([1, 2, 3], names)
+pyplot.savefig('img/BoxplotYNorm.png',dpi=50)
+# pyplot.show()
+pyplot.clf()
 
 # #PLOT RUNS OVERLAYED
 for i in range(len(xs)):
@@ -88,14 +108,91 @@ for i in range(len(xs)):
 
     pyplot.scatter(x_norm, y_norm, c = pyplot.cm.spectral(i/float(len(xs))), s = 40.0, alpha = 0.8)
 
-pyplot.axes().set_aspect('equal', 'datalim')
+pyplot.title('Cartesian Overlay')
 pyplot.grid(True)
 pyplot.locator_params(nbins=10)
+pyplot.axes().set_aspect('equal', 'datalim')
+pyplot.grid(True)
+# pyplot.locator_params(nbins=10)
 
 pyplot.savefig('img/overlay.png')
-
-pyplot.show()
+# pyplot.show()
 pyplot.clf()
+
+#CONVERT TO POLAR COODRINATES
+
+rs = []
+ps = []
+
+mp = []
+mr = []
+
+radius = 392.699
+for i in range(len(xs)):
+    r = []
+    p = []
+    for j in range(len(xs[i])):
+        # print xs[i][j], ys[i][j]
+        r.append(sqrt(xs[i][j]**2 + ys[i][j] ** 2))
+        p.append(tan(xs[i][j]/ys[i][j]))#sawp X an Y
+        # print r, p
+    rs.append(r)
+    ps.append(p)
+    mp.append(sum(p) / float(len(p)))
+    mr.append(sum(r) / float(len(r)))
+    pyplot.title('Polar Coordinates ' + files[i][:-4])
+    pyplot.grid(True)
+    pyplot.locator_params(nbins=10)
+    pyplot.scatter(p, r, c = 'black', marker = 'x')
+    pyplot.savefig('img/' + files[i][:-4]+ '_pc.png')
+    pyplot.clf()
+    # pyplot.show()
+
+##SUBSTRACT MEAN
+p_norm = []
+r_norm = []
+
+for i in range(len(xs)):
+    p_norm.append([p - mp[i] for p in ps[i]])
+    r_norm.append([r - mr[i] for r in rs[i]])
+
+##show Names
+pyplot.title('Angle')
+pyplot.grid(True)
+pyplot.locator_params(nbins=10)
+pyplot.boxplot(ps, vert=False)
+pyplot.yticks([1, 2, 3], names, rotation='vertical')
+pyplot.savefig('img/BoxplotAngle.png',dpi=50)
+# pyplot.show()
+pyplot.clf()
+
+pyplot.title('Distance')
+pyplot.grid(True)
+pyplot.locator_params(nbins=10)
+pyplot.boxplot(rs)
+pyplot.xticks([1, 2, 3], names, rotation='horizontal')
+pyplot.savefig('img/BoxplotDistance.png',dpi=50)
+# pyplot.show()
+pyplot.clf()
+
+pyplot.title('Normalized Angle')
+pyplot.grid(True)
+pyplot.locator_params(nbins=10)
+pyplot.boxplot(p_norm, vert=False)
+pyplot.yticks([1, 2, 3], names, rotation='vertical')
+pyplot.savefig('img/BoxplotAngleNorm.png',dpi=50)
+# pyplot.show()
+pyplot.clf()
+
+pyplot.title('Normalized Distance')
+pyplot.grid(True)
+pyplot.locator_params(nbins=10)
+pyplot.boxplot(r_norm)
+pyplot.xticks([1, 2, 3], names, rotation='horizontal')
+pyplot.savefig('img/BoxplotDistanceNorm.png',dpi=50)
+# pyplot.show()
+pyplot.clf()
+
 
 # #MAKE ALL POINT POSITIVE
 # for i in range(len(xs)):
