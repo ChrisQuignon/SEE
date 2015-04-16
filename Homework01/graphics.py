@@ -206,6 +206,8 @@ for idx, set in enumerate([xs, ys, rs, ps]):
         mu = np.mean(vals)
         sigma = np.std(vals)
 
+        #TODO: print mu and sigma
+
         # the histogram of the data
         n, bins, patches = pyplot.hist(vals, 8, normed=1, alpha=0.75)
 
@@ -215,6 +217,13 @@ for idx, set in enumerate([xs, ys, rs, ps]):
 
         mean_error = sqrt(sigma/len(vals))
         error_std_dev = sqrt(sigma **2 / 2 * len(vals))
+
+        print 'Histogram: ' + name + ':'
+        print 'mu: ' + str(mu)
+        print 'sigma: ' + str(sigma)
+        print 'Standard error of mean: ' + str(mean_error)
+        print 'Standard erro of deviation: ' + str(error_std_dev)
+        print ''
 
         s = "Standard error of mean/deviation: {0}/{1}".format(round(mean_error,4), round(error_std_dev,4))
         pyplot.title('Histogram: ' + name)
