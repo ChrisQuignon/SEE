@@ -11,6 +11,8 @@
 \usepackage{hyperref}
 \usepackage{color}
 \usepackage{csvsimple}
+\usepackage{float}
+
 
 
 %Bibliogrpahy?
@@ -227,7 +229,7 @@ For the right turn the true values are calculated as (10.266, 89.206) and the fo
 
 \section{Data}
 
- \begin{figure}[h]
+\begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
@@ -241,7 +243,7 @@ For the right turn the true values are calculated as (10.266, 89.206) and the fo
 \label{fig:data_ahead}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
@@ -249,13 +251,14 @@ For the right turn the true values are calculated as (10.266, 89.206) and the fo
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
-   \includegraphics[width= 8cm]{img/data_left.png}  
+   \includegraphics[width= 8cm]{img/data_left.png}
+   
 \end{minipage}
 \caption{Data points and visualisation of the left arc. The wheel failure is marked red. Measurements in cm.  (See data\_left.csv)}
 \label{fig:data_left}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
@@ -268,9 +271,9 @@ For the right turn the true values are calculated as (10.266, 89.206) and the fo
 \caption{Data points and visualisation of the right arc. Measurements in cm. (See data\_right.csv)}
 \label{fig:data_left}
 \end{figure}
- 
+
 \section{Summary}
-The process of finding these numbers and also random errors over x and y axises are also included in the attached tables. 
+The process of finding these numbers and also random errors over x and y axes are also included in the attached tables. 
 From the numbers it can be seen that the there's a high systematic error over x axis specially for the left turn. Meanwhile it can be also observed that the precision over x axis is also higher. 
 It can be also observed that in each of the 3 runs of the experiment (forward, left and right) , the point clouds were almost accumulated as 2 separate bunch of points next to each other. This may be due to a systematic error within the two motors.
 
@@ -315,8 +318,8 @@ It can be also observed that in each of the 3 runs of the experiment (forward, l
 %\end{figure}
 
 %BIBLIOGRPAHY?
-\bibliographystyle{plain}%amsalpha
-\bibliography{Top30.bib}
+%\bibliographystyle{plain}%amsalpha
+%\bibliography{Top30.bib}
 %\bibentry{}
 
 \end{document}
