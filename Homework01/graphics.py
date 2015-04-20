@@ -50,58 +50,6 @@ for i in range(len(xs)):
     x_norm.append([x - np.mean(xs[i]) for x in xs[i]])
     y_norm.append([y - np.mean(ys[i]) for y in ys[i]])
 
-# # PRINT BOXPLOTS
-# pyplot.title('X Axis')
-# pyplot.grid(True)
-# pyplot.locator_params(nbins=10)
-# pyplot.boxplot(xs, vert=False)
-# pyplot.yticks([1, 2, 3], names, rotation='vertical')
-# pyplot.savefig('img/BoxplotX.png',dpi=50)
-# # pyplot.show()
-# pyplot.clf()
-#
-# pyplot.title('Normalized X Axis')
-# pyplot.grid(True)
-# pyplot.locator_params(nbins=10)
-# pyplot.boxplot(x_norm)
-# pyplot.xticks([1, 2, 3], names)
-# pyplot.savefig('img/BoxplotXNorm.png',dpi=50)
-# # pyplot.show()
-# pyplot.clf()
-#
-# pyplot.title('Y Axis')
-# pyplot.grid(True)
-# pyplot.locator_params(nbins=10)
-# pyplot.boxplot(ys)
-# pyplot.xticks([1, 2, 3], names, rotation='horizontal')
-# pyplot.savefig('img/BoxplotY.png',dpi=50)
-# # pyplot.show()
-# pyplot.clf()
-#
-# pyplot.title('Normalized Y Axis')
-# pyplot.grid(True)
-# pyplot.locator_params(nbins=10)
-# pyplot.boxplot(y_norm)
-# pyplot.xticks([1, 2, 3], names)
-# pyplot.savefig('img/BoxplotYNorm.png',dpi=50)
-# # pyplot.show()
-# pyplot.clf()
-
-# ##PLOT OVERLAYED CARTESIAN COORDINATES
-# for i in range(len(xs)):
-#     pyplot.scatter(x_norm[i], y_norm[i], color = pyplot.cm.spectral(i/float(len(xs))),  s = 40.0, alpha = 0.8)
-#
-# pyplot.title('Cartesian Overlay')
-# pyplot.grid(True)
-# pyplot.locator_params(nbins=10)
-# pyplot.axes().set_aspect('equal', 'datalim')
-# pyplot.grid(True)
-# # pyplot.locator_params(nbins=10)
-#
-# pyplot.savefig('img/cartesian_overlay.png')
-# # pyplot.show()
-# pyplot.clf()
-
 
 #CONVERT TO POLAR COODRINATES
 rs = []
@@ -135,15 +83,6 @@ for i in range(len(xs)):
     r_norm.append([r - np.mean(rs[i]) for r in rs[i]])
 
 #BOXPLOTS
-# pyplot.title('Angle')
-# pyplot.grid(True)
-# pyplot.locator_params(nbins=10)
-# pyplot.boxplot(ps, vert=False)
-# pyplot.yticks([1, 2, 3], names, rotation='vertical')
-# pyplot.savefig('img/BoxplotAngle.png',dpi=50)
-# # pyplot.show()
-# pyplot.clf()
-
 pyplot.title('Boxplot of the distance')
 pyplot.grid(True)
 pyplot.locator_params(nbins=10)
@@ -164,16 +103,6 @@ pyplot.savefig('img/BoxplotAngleNorm.png',dpi=50)
 # pyplot.show()
 pyplot.clf()
 
-# pyplot.title('Normalized Distance')
-# pyplot.grid(True)
-# pyplot.locator_params(nbins=10)
-# pyplot.boxplot(r_norm)
-# pyplot.xticks([1, 2, 3], names, rotation='horizontal')
-# pyplot.savefig('img/BoxplotDistanceNorm.png',dpi=50)
-# # pyplot.show()
-# pyplot.clf()
-
-
 ##HISTOGRAMS
 setNames = ['Distances', 'Angles']#'Xs', 'Ys',
 for idx, set in enumerate([rs, ps]):#xs, ys,
@@ -185,9 +114,9 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
         mu = np.mean(vals)
         sigma = np.std(vals)
 
-        #ERRORS - not needed
-        mean_error = sqrt(sigma/len(vals))
-        error_std_dev = sqrt(sigma **2 / 2 * len(vals))
+        # #ERRORS - not needed
+        # mean_error = sqrt(sigma/len(vals))
+        # error_std_dev = sqrt(sigma **2 / 2 * len(vals))
 
 
         # HISTOGRAM
@@ -196,7 +125,7 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
         #TODO USE RANGES HERE
         # n, bins, patches = pyplot.hist(vals, range=[])
 
-        #Gaussian
+        #GAUSSIAN
         y = mlab.normpdf( bins, mu, sigma)
         pyplot.plot(bins, y, 'r--', linewidth=1)
 
@@ -213,8 +142,6 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
         print ''
 
         s = 'Histogram: ' + files[jdx][:-4]
-        # s = s + '\n' + "mu: {0} sigma: {1}".format(round(mu, 2), round(sigma, 2))
-        # s = s + '\n' + "chisq: {0} p: {1}".format(round(chisq, 2), round(p, 2))
         pyplot.title(s)
 
         pyplot.ylabel("# of measurements")
@@ -222,8 +149,6 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
             pyplot.xlabel("distance in cm")
         else:
             pyplot.xlabel("angle in radians")
-        # pyplot.xlabel(s)
-        # pyplot.ylabel("Frequency")
         pyplot.grid(True)
         # pyplot.show()
         pyplot.savefig('img/' + name + '.png',dpi=50)
