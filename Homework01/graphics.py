@@ -4,6 +4,7 @@ import glob
 from math import sqrt, tan
 import numpy as np
 import matplotlib.mlab as mlab
+from scipy.stats import chisquare, histogram, norm
 
 files = ['data_left.csv', 'data_ahead.csv', 'data_right.csv']
 
@@ -33,6 +34,8 @@ for i in range(len(xs)):
     # pyplot.scatter(m_x, m_y, color = 'g', zorder = 1, s = 40, alpha = 0.5)
 
     pyplot.title('Cartesian Coordinates ' + files[i][:-4])
+    pyplot.ylabel('y in cm')
+    pyplot.xlabel('x in cm')
     pyplot.axes().set_aspect('equal', 'datalim')
     pyplot.grid(True)
     pyplot.locator_params(nbins=10)
@@ -47,57 +50,57 @@ for i in range(len(xs)):
     x_norm.append([x - np.mean(xs[i]) for x in xs[i]])
     y_norm.append([y - np.mean(ys[i]) for y in ys[i]])
 
-# PRINT BOXPLOTS
-pyplot.title('X Axis')
-pyplot.grid(True)
-pyplot.locator_params(nbins=10)
-pyplot.boxplot(xs, vert=False)
-pyplot.yticks([1, 2, 3], names, rotation='vertical')
-pyplot.savefig('img/BoxplotX.png',dpi=50)
-# pyplot.show()
-pyplot.clf()
-
-pyplot.title('Normalized X Axis')
-pyplot.grid(True)
-pyplot.locator_params(nbins=10)
-pyplot.boxplot(x_norm)
-pyplot.xticks([1, 2, 3], names)
-pyplot.savefig('img/BoxplotXNorm.png',dpi=50)
-# pyplot.show()
-pyplot.clf()
-
-pyplot.title('Y Axis')
-pyplot.grid(True)
-pyplot.locator_params(nbins=10)
-pyplot.boxplot(ys)
-pyplot.xticks([1, 2, 3], names, rotation='horizontal')
-pyplot.savefig('img/BoxplotY.png',dpi=50)
-# pyplot.show()
-pyplot.clf()
-
-pyplot.title('Normalized Y Axis')
-pyplot.grid(True)
-pyplot.locator_params(nbins=10)
-pyplot.boxplot(y_norm)
-pyplot.xticks([1, 2, 3], names)
-pyplot.savefig('img/BoxplotYNorm.png',dpi=50)
-# pyplot.show()
-pyplot.clf()
-
-##PLOT OVERLAYED CARTESIAN COORDINATES
-for i in range(len(xs)):
-    pyplot.scatter(x_norm[i], y_norm[i], color = pyplot.cm.spectral(i/float(len(xs))),  s = 40.0, alpha = 0.8)
-
-pyplot.title('Cartesian Overlay')
-pyplot.grid(True)
-pyplot.locator_params(nbins=10)
-pyplot.axes().set_aspect('equal', 'datalim')
-pyplot.grid(True)
+# # PRINT BOXPLOTS
+# pyplot.title('X Axis')
+# pyplot.grid(True)
 # pyplot.locator_params(nbins=10)
+# pyplot.boxplot(xs, vert=False)
+# pyplot.yticks([1, 2, 3], names, rotation='vertical')
+# pyplot.savefig('img/BoxplotX.png',dpi=50)
+# # pyplot.show()
+# pyplot.clf()
+#
+# pyplot.title('Normalized X Axis')
+# pyplot.grid(True)
+# pyplot.locator_params(nbins=10)
+# pyplot.boxplot(x_norm)
+# pyplot.xticks([1, 2, 3], names)
+# pyplot.savefig('img/BoxplotXNorm.png',dpi=50)
+# # pyplot.show()
+# pyplot.clf()
+#
+# pyplot.title('Y Axis')
+# pyplot.grid(True)
+# pyplot.locator_params(nbins=10)
+# pyplot.boxplot(ys)
+# pyplot.xticks([1, 2, 3], names, rotation='horizontal')
+# pyplot.savefig('img/BoxplotY.png',dpi=50)
+# # pyplot.show()
+# pyplot.clf()
+#
+# pyplot.title('Normalized Y Axis')
+# pyplot.grid(True)
+# pyplot.locator_params(nbins=10)
+# pyplot.boxplot(y_norm)
+# pyplot.xticks([1, 2, 3], names)
+# pyplot.savefig('img/BoxplotYNorm.png',dpi=50)
+# # pyplot.show()
+# pyplot.clf()
 
-pyplot.savefig('img/cartesian_overlay.png')
-# pyplot.show()
-pyplot.clf()
+# ##PLOT OVERLAYED CARTESIAN COORDINATES
+# for i in range(len(xs)):
+#     pyplot.scatter(x_norm[i], y_norm[i], color = pyplot.cm.spectral(i/float(len(xs))),  s = 40.0, alpha = 0.8)
+#
+# pyplot.title('Cartesian Overlay')
+# pyplot.grid(True)
+# pyplot.locator_params(nbins=10)
+# pyplot.axes().set_aspect('equal', 'datalim')
+# pyplot.grid(True)
+# # pyplot.locator_params(nbins=10)
+#
+# pyplot.savefig('img/cartesian_overlay.png')
+# # pyplot.show()
+# pyplot.clf()
 
 
 #CONVERT TO POLAR COODRINATES
@@ -117,6 +120,9 @@ for i in range(len(xs)):
     pyplot.grid(True)
     pyplot.locator_params(nbins=10)
     pyplot.scatter(p, r, c = 'black', marker = 'x')
+
+    pyplot.ylabel('distance in cm')
+    pyplot.xlabel('angle in radians')
     pyplot.savefig('img/' + files[i][:-4]+ '_pc.png')
     pyplot.clf()
     # pyplot.show()
@@ -129,19 +135,20 @@ for i in range(len(xs)):
     r_norm.append([r - np.mean(rs[i]) for r in rs[i]])
 
 #BOXPLOTS
-pyplot.title('Angle')
-pyplot.grid(True)
-pyplot.locator_params(nbins=10)
-pyplot.boxplot(ps, vert=False)
-pyplot.yticks([1, 2, 3], names, rotation='vertical')
-pyplot.savefig('img/BoxplotAngle.png',dpi=50)
-# pyplot.show()
-pyplot.clf()
+# pyplot.title('Angle')
+# pyplot.grid(True)
+# pyplot.locator_params(nbins=10)
+# pyplot.boxplot(ps, vert=False)
+# pyplot.yticks([1, 2, 3], names, rotation='vertical')
+# pyplot.savefig('img/BoxplotAngle.png',dpi=50)
+# # pyplot.show()
+# pyplot.clf()
 
-pyplot.title('Distance')
+pyplot.title('Boxplot of the distance')
 pyplot.grid(True)
 pyplot.locator_params(nbins=10)
 pyplot.boxplot(rs)
+pyplot.ylabel('distance in cm')
 pyplot.xticks([1, 2, 3], names, rotation='horizontal')
 pyplot.savefig('img/BoxplotDistance.png',dpi=50)
 # pyplot.show()
@@ -152,54 +159,72 @@ pyplot.grid(True)
 pyplot.locator_params(nbins=10)
 pyplot.boxplot(p_norm, vert=False)
 pyplot.yticks([1, 2, 3], names, rotation='vertical')
+pyplot.xlabel('angle in radians')
 pyplot.savefig('img/BoxplotAngleNorm.png',dpi=50)
 # pyplot.show()
 pyplot.clf()
 
-pyplot.title('Normalized Distance')
-pyplot.grid(True)
-pyplot.locator_params(nbins=10)
-pyplot.boxplot(r_norm)
-pyplot.xticks([1, 2, 3], names, rotation='horizontal')
-pyplot.savefig('img/BoxplotDistanceNorm.png',dpi=50)
-# pyplot.show()
-pyplot.clf()
+# pyplot.title('Normalized Distance')
+# pyplot.grid(True)
+# pyplot.locator_params(nbins=10)
+# pyplot.boxplot(r_norm)
+# pyplot.xticks([1, 2, 3], names, rotation='horizontal')
+# pyplot.savefig('img/BoxplotDistanceNorm.png',dpi=50)
+# # pyplot.show()
+# pyplot.clf()
 
 
 ##HISTOGRAMS
-setNames = ['Xs', 'Ys', 'Distances', 'Angles']
-for idx, set in enumerate([xs, ys, rs, ps]):
+setNames = ['Distances', 'Angles']#'Xs', 'Ys',
+for idx, set in enumerate([rs, ps]):#xs, ys,
 
     for jdx, vals in enumerate(set):
         name = setNames[idx] + '_' + files[jdx][:-4]
 
-
+        #CALCULATING MU AND SIGMA
         mu = np.mean(vals)
         sigma = np.std(vals)
 
-        # the histogram of the data
-        n, bins, patches = pyplot.hist(vals, 8, normed=1, alpha=0.75)
-
-        # add a 'best fit' line
-        y = mlab.normpdf( bins, mu, sigma)
-        l = pyplot.plot(bins, y, 'r--', linewidth=1)
-
+        #ERRORS - not needed
         mean_error = sqrt(sigma/len(vals))
         error_std_dev = sqrt(sigma **2 / 2 * len(vals))
+
+
+        # HISTOGRAM
+        n, bins, patches = pyplot.hist(vals, bins=6)
+
+        #TODO USE RANGES HERE
+        # n, bins, patches = pyplot.hist(vals, range=[])
+
+        #Gaussian
+        y = mlab.normpdf( bins, mu, sigma)
+        pyplot.plot(bins, y, 'r--', linewidth=1)
+
+        #CHI SQUARED TEST
+        chisq, p = chisquare(bins, y)
 
         print 'Histogram: ' + name + ':'
         print 'mu: ' + str(mu)
         print 'sigma: ' + str(sigma)
-        print 'Standard error of mean: ' + str(mean_error)
-        print 'Standard erro of deviation: ' + str(error_std_dev)
+        print "chisq:" + str(chisq)
+        print "p: " + str(p)
+        # print 'Standard error of mean: ' + str(mean_error)
+        # print 'Standard erro of deviation: ' + str(error_std_dev)
         print ''
 
-        s = "Standard error of mean/deviation: {0}/{1}".format(round(mean_error,4), round(error_std_dev,4))
-        pyplot.title('Histogram: ' + name)
+        s = 'Histogram: ' + files[jdx][:-4]
+        # s = s + '\n' + "mu: {0} sigma: {1}".format(round(mu, 2), round(sigma, 2))
+        # s = s + '\n' + "chisq: {0} p: {1}".format(round(chisq, 2), round(p, 2))
+        pyplot.title(s)
 
-        pyplot.xlabel(s)
+        pyplot.ylabel("# of measurements")
+        if idx == 0:
+            pyplot.xlabel("distance in cm")
+        else:
+            pyplot.xlabel("angle in radians")
+        # pyplot.xlabel(s)
         # pyplot.ylabel("Frequency")
-        # pyplot.grid(True)
+        pyplot.grid(True)
         # pyplot.show()
         pyplot.savefig('img/' + name + '.png',dpi=50)
         pyplot.clf()
