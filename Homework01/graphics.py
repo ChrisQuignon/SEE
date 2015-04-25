@@ -132,11 +132,11 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
         #CHI SQUARED TEST
         chisq, p = chisquare(bins, y)
 
-        print 'Histogram: ' + name + ':'
-        print 'mu: ' + str(mu)
-        print 'sigma: ' + str(sigma)
-        print "chisq:" + str(chisq)
-        print "p: " + str(p)
+        print 'Histogram ' + name + ':'
+        print 'mu: ', round(mu, 2)
+        print 'sigma: ', round(sigma,2)
+        print 'chisq:', round (chisq, 2)
+        print 'p: ', round(p, 2)
         # print 'Standard error of mean: ' + str(mean_error)
         # print 'Standard erro of deviation: ' + str(error_std_dev)
         print ''

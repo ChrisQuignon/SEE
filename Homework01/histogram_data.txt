@@ -1,72 +1,36 @@
-Histogram: Xs data_left:
-mu: -12.0925
-sigma: 0.878461012225
-Standard error of mean: 0.148194214818
-Standard erro of deviation: 3.92859707784
+Histogram Distances_data_left:
+mu:  89.72
+sigma:  0.13
+chisq: 62749.8
+p:  0.0
 
-Histogram: Xs data_ahead:
-mu: 0.10243902439
-sigma: 0.786622233963
-Standard error of mean: 0.138513205672
-Standard erro of deviation: 3.56158364338
+Histogram Distances_data_ahead:
+mu:  89.94
+sigma:  0.14
+chisq: 53081.1
+p:  0.0
 
-Histogram: Xs data_right:
-mu: 11.7414634146
-sigma: 0.96271354546
-Standard error of mean: 0.153234520203
-Standard erro of deviation: 4.35887096592
+Histogram Distances_data_right:
+mu:  89.66
+sigma:  0.14
+chisq: 51231.0
+p:  0.0
 
-Histogram: Ys data_left:
-mu: 88.8925
-sigma: 0.16490527584
-Standard error of mean: 0.0642077245821
-Standard erro of deviation: 0.737478813255
+Histogram Angles_data_left:
+mu:  -0.14
+sigma:  0.01
+chisq: 157.18
+p:  0.0
 
-Histogram: Ys data_ahead:
-mu: 89.9414634146
-sigma: 0.134301462419
-Standard error of mean: 0.0572332545366
-Standard erro of deviation: 0.608075733409
+Histogram Angles_data_ahead:
+mu:  0.0
+sigma:  0.01
+chisq: 141.29
+p:  0.0
 
-Histogram: Ys data_right:
-mu: 88.8829268293
-sigma: 0.179297326336
-Standard error of mean: 0.0661294603063
-Standard erro of deviation: 0.811803172108
-
-Histogram: Distances data_left:
-mu: 89.7155926511
-sigma: 0.128200068149
-Standard error of mean: 0.0566127344662
-Standard erro of deviation: 0.573328134205
-
-Histogram: Distances data_ahead:
-mu: 89.9449590168
-sigma: 0.135991928375
-Standard error of mean: 0.0575923284981
-Standard erro of deviation: 0.615729643559
-
-Histogram: Distances data_right:
-mu: 89.6603421479
-sigma: 0.136585776401
-Standard error of mean: 0.0577179382864
-Standard erro of deviation: 0.618418404853
-
-Histogram: Angles data_left:
-mu: -0.136906695594
-sigma: 0.0102262215702
-Standard error of mean: 0.0159892319783
-Standard erro of deviation: 0.0457330531681
-
-Histogram: Angles data_ahead:
-mu: 0.0011377308577
-sigma: 0.00874067995825
-Standard error of mean: 0.0146009354514
-Standard erro of deviation: 0.0395751116956
-
-Histogram: Angles data_right:
-mu: 0.132905384874
-sigma: 0.0112088156849
-Standard error of mean: 0.0165343807992
-Standard erro of deviation: 0.0507500714846
+Histogram Angles_data_right:
+mu:  0.13
+sigma:  0.01
+chisq: 114.33
+p:  0.0
 
