@@ -71,7 +71,7 @@ for i in range(len(xs)):
 
     pyplot.ylabel('distance in cm')
     pyplot.xlabel('angle in radians')
-    pyplot.savefig('img/' + files[i][:-4]+ '_pc.png')
+    # pyplot.savefig('img/' + files[i][:-4]+ '_pc.png')
     pyplot.clf()
     # pyplot.show()
 
@@ -89,7 +89,7 @@ pyplot.locator_params(nbins=10)
 pyplot.boxplot(rs)
 pyplot.ylabel('distance in cm')
 pyplot.xticks([1, 2, 3], names, rotation='horizontal')
-pyplot.savefig('img/BoxplotDistance.png',dpi=50)
+# pyplot.savefig('img/BoxplotDistance.png',dpi=50)
 # pyplot.show()
 pyplot.clf()
 
@@ -99,7 +99,7 @@ pyplot.locator_params(nbins=10)
 pyplot.boxplot(p_norm, vert=False)
 pyplot.yticks([1, 2, 3], names, rotation='vertical')
 pyplot.xlabel('angle in radians')
-pyplot.savefig('img/BoxplotAngleNorm.png',dpi=50)
+# pyplot.savefig('img/BoxplotAngleNorm.png',dpi=50)
 # pyplot.show()
 pyplot.clf()
 
@@ -117,10 +117,27 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
         # #ERRORS - not needed
         # mean_error = sqrt(sigma/len(vals))
         # error_std_dev = sqrt(sigma **2 / 2 * len(vals))
+        if setNames[idx] == 'Distances':
+            if jdx == 0:#left
+                bins = 5
+            elif jdx == 1:#ahead
+                bins = [89.65, 89.85, 89.95, 90.05, 90.25]
+            elif jdx == 2:#right
+                bins = 5
+
+        elif setNames[idx] == 'Angles':
+            if jdx == 0:#left
+                bins = [-0.155, -0.148, -0.144, -0.137, -0.132, -0.127]
+            elif jdx == 1:#ahead
+                bins = [-0.02, -0.008, 0.0, 0.005, 0.01, 0.03]
+            elif jdx == 2:#right
+                bins = [0.01, 0.122, 0.128, 0.134, 0.143, 0.163]
 
 
         # HISTOGRAM
-        n, bins, patches = pyplot.hist(vals, bins=6)
+        #ignore handcrafted bins
+        #bin = 6
+        n, bins, patches = pyplot.hist(vals, bins=bins)
 
         #TODO USE RANGES HERE
         # n, bins, patches = pyplot.hist(vals, range=[])
@@ -136,7 +153,8 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
         print 'mu: ', round(mu, 2)
         print 'sigma: ', round(sigma,2)
         print 'chisq:', round (chisq, 2)
-        print 'p: ', round(p, 2)
+        print 'p: ', p
+        print 'bins: ', bins
         # print 'Standard error of mean: ' + str(mean_error)
         # print 'Standard erro of deviation: ' + str(error_std_dev)
         print ''
