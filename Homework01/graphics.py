@@ -159,15 +159,9 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
         ms = []
         widths = []
 
-        print bins_m
-
         for i in range(len(bins_m)-1):
             ms.append((bins_m[i]+bins_m[i+1])/2)
             widths.append((bins_m[i+1]-bins_m[i]))
-
-        print ms
-        print expected
-        print widths
 
         pyplot.bar(ms, expected, widths, align='center', color = 'g', alpha = 0.6)
 
