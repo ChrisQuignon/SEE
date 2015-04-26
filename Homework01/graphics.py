@@ -5,6 +5,7 @@ from math import sqrt, tan
 import numpy as np
 import matplotlib.mlab as mlab
 from scipy.stats import chisquare, histogram, norm
+from scipy import integrate
 
 files = ['data_left.csv', 'data_ahead.csv', 'data_right.csv']
 
@@ -103,6 +104,7 @@ pyplot.xlabel('angle in radians')
 # pyplot.show()
 pyplot.clf()
 
+
 ##HISTOGRAMS
 setNames = ['Distances', 'Angles']#'Xs', 'Ys',
 for idx, set in enumerate([rs, ps]):#xs, ys,
@@ -135,25 +137,52 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
 
 
         # HISTOGRAM
-        #ignore handcrafted bins
-        #bin = 6
-        n, bins, patches = pyplot.hist(vals, bins=bins)
-
-        #TODO USE RANGES HERE
-        # n, bins, patches = pyplot.hist(vals, range=[])
+        # ignore handcrafted bins
+        # bins = 6
+        observed, bins_m, patches_m = pyplot.hist(vals, bins=bins, color = 'b', alpha = 0.6)
 
         #GAUSSIAN
-        y = mlab.normpdf( bins, mu, sigma)
-        pyplot.plot(bins, y, 'r--', linewidth=1)
+        x = np.arange(bins_m[0], bins_m[-1], 0.001)
+        y = mlab.normpdf( x, mu, sigma)
+        pyplot.plot(x, y, 'r--', linewidth=1)
+
+
+        #Measurements expected
+        expected = []
+
+        for i in range(len(bins_m)-1):
+            #integration of the gaussian
+            prob = integrate.quad(norm(mu, sigma).pdf, bins_m[i], bins_m[i+1])[0]
+            expected.append(prob*float(len(vals)))
+
+        #Plot expected
+        ms = []
+        widths = []
+
+        print bins_m
+
+        for i in range(len(bins_m)-1):
+            ms.append((bins_m[i]+bins_m[i+1])/2)
+            widths.append((bins_m[i+1]-bins_m[i]))
+
+        print ms
+        print expected
+        print widths
+
+        pyplot.bar(ms, expected, widths, align='center', color = 'g', alpha = 0.6)
 
         #CHI SQUARED TEST
-        chisq, p = chisquare(bins, y)
+        chisq, p = chisquare(np.asarray(observed), np.asarray(expected))
+        # chisq, p = chisquare(bins, y*(len(vals)))
 
         print 'Histogram ' + name + ':'
         print 'mu: ', round(mu, 2)
         print 'sigma: ', round(sigma,2)
         print 'chisq:', round (chisq, 2)
-        print 'p: ', p
+        print 'p: ', round(p*100, 2), '%'
+        print '--'
+        print 'expected: ', map(lambda x : round(x, 2), expected)
+        print 'oberved: ',observed
         print 'bins: ', bins
         # print 'Standard error of mean: ' + str(mean_error)
         # print 'Standard erro of deviation: ' + str(error_std_dev)

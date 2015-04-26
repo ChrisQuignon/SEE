@@ -10,7 +10,7 @@
 \usepackage{caption}
 \usepackage{hyperref}
 \usepackage{color}
-\usepackage{csvsimple}
+%\usepackage{csvsimple}
 \usepackage{float}
 \usepackage[T1]{fontenc}
 
@@ -80,8 +80,8 @@
 
 \maketitle
 
-\section{Description}
-We use polar coordinates
+%\section{Description}
+%We use polar coordinates
 %PUT UNITS ON THE FIGURES
 
 \section{Code}
@@ -89,11 +89,22 @@ We use polar coordinates
 \lstinputlisting[language=Python]{graphics.py}
 
 \subsection{Output}
+Here the results of the chi square test and the p values can be observed. Our null hypothesis is either " being a Gaussian" or not so in this case we have 1 degree of freedom.
+\\
 (See histogram\_data.txt)
 \lstinputlisting{histogram_data.txt}
 
+
+  
 \section{Analysis}
 
+In the following diagrams the points in the polar coordinate and their distributions have been plotted. The red plot in the distribution diagrams indicates the gaussian fit.  As it is also observable in the diagrams, the number of bins and ranges have been tuned manually to get the best gaussian fits possible for the observed data. 
+
+The $p$ = 0.0 for all three distance histograms indicates that the distribution, with almost 95 percent accuracy, can be considered as a gaussian distribution. This interpretation is also observable in the diagrams for these three diagrams ( See figures in section 3.5). the red gaussian fit for these three plots is almost curved and bell-shaped. 
+
+The $p$ values for the angle diagrams are also either very small or zero which says the distribution must be Gaussian, however based on the diagrams of section 3.5, it is really hard to conclude a Gaussian distribution because the diagrams are not bell-shaped at all.
+
+This can be due to the fact that the number of samples are not enough. To have a perfect fit with smooth edges the number of bins should be increased, however increasing the number of bins results in fewer points in each bar. This can affect the result of the chisquare() function since in some cases by increasing the number of bins less than 5 points fall into each category and it is mentioned in the description of the function that this can lead to inaccurate results.
 
 \subsection{Polar Coordinates}
 
@@ -103,15 +114,15 @@ We use polar coordinates
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\linewidth]{img/data_left_pc.png}
-  %\caption{}
-  %\label{fig:}
+  \caption{Polar coordinates for the run to the left.}
+  \label{fig:data_left_pc}
 \end{figure}
 
 \subsubsection{ahead}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\linewidth]{img/data_ahead_pc.png}
-  %\caption{}
+  \caption{Polar coordinates for the run straight ahead.}
   %\label{fig:}
 \end{figure}
 
@@ -119,7 +130,7 @@ We use polar coordinates
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\linewidth]{img/data_right_pc.png}
-  %\caption{}
+  \caption{Polar coordinates for the run to the right.}
   %\label{fig:}
 \end{figure}
 
@@ -131,7 +142,7 @@ We use polar coordinates
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\linewidth]{img/BoxplotAngleNorm.png}
-  %\caption{}
+  \caption{Boxplot of the angular coordinates of all three runs with subtracted mean.}
   %\label{fig:}
 \end{figure}
 %Description
@@ -140,7 +151,7 @@ We use polar coordinates
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\linewidth]{img/BoxplotDistance.png}
-  %\caption{}
+  \caption{Boxplot of the distances of all three runs.}
   %\label{fig:}
 \end{figure}
 %Description
@@ -162,6 +173,7 @@ We use polar coordinates
   %\caption{}
   %\label{fig:}
 \end{minipage}
+\caption{Histograms of the angles and distances of the left run.}
 \end{figure}
 %Description
 
@@ -181,6 +193,7 @@ We use polar coordinates
   %\caption{}
   %\label{fig:}
 \end{minipage}
+\caption{Histograms of the angles and distances of run straight ahead.}
 \end{figure}
 
 %Description
@@ -201,6 +214,7 @@ We use polar coordinates
   %\caption{}
   %\label{fig:}
 \end{minipage}
+\caption{Histograms of the angles and distances of the right run.}
 \end{figure}
 
 %Description
