@@ -72,7 +72,7 @@ for i in range(len(xs)):
 
     pyplot.ylabel('distance in cm')
     pyplot.xlabel('angle in radians')
-    # pyplot.savefig('img/' + files[i][:-4]+ '_pc.png')
+    pyplot.savefig('img/' + files[i][:-4]+ '_pc.png')
     pyplot.clf()
     # pyplot.show()
 
@@ -90,7 +90,7 @@ pyplot.locator_params(nbins=10)
 pyplot.boxplot(rs)
 pyplot.ylabel('distance in cm')
 pyplot.xticks([1, 2, 3], names, rotation='horizontal')
-# pyplot.savefig('img/BoxplotDistance.png',dpi=50)
+pyplot.savefig('img/BoxplotDistance.png',dpi=50)
 # pyplot.show()
 pyplot.clf()
 
@@ -100,7 +100,7 @@ pyplot.locator_params(nbins=10)
 pyplot.boxplot(p_norm, vert=False)
 pyplot.yticks([1, 2, 3], names, rotation='vertical')
 pyplot.xlabel('angle in radians')
-# pyplot.savefig('img/BoxplotAngleNorm.png',dpi=50)
+pyplot.savefig('img/BoxplotAngleNorm.png',dpi=50)
 # pyplot.show()
 pyplot.clf()
 
@@ -176,7 +176,7 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
         print 'p: ', round(p*100, 2), '%'
         print '--'
         print 'expected: ', map(lambda x : round(x, 2), expected)
-        print 'oberved: ',observed
+        print 'observed: ',observed
         print 'bins: ', bins
         # print 'Standard error of mean: ' + str(mean_error)
         # print 'Standard erro of deviation: ' + str(error_std_dev)

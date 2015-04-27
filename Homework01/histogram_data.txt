@@ -5,7 +5,7 @@ chisq: 3.46
 p:  48.44 %
 --
 expected:  [3.42, 9.03, 12.68, 9.47, 3.76]
-oberved:  [ 5 10 13  6  6]
+observed:  [ 5 10 13  6  6]
 bins:  5
 
 Histogram Distances_data_ahead:
@@ -15,7 +15,7 @@ chisq: 0.92
 p:  82.07 %
 --
 expected:  [9.33, 11.16, 10.88, 8.51]
-oberved:  [12 10 11  8]
+observed:  [12 10 11  8]
 bins:  [89.65, 89.85, 89.95, 90.05, 90.25]
 
 Histogram Distances_data_right:
@@ -25,7 +25,7 @@ chisq: 1.62
 p:  80.47 %
 --
 expected:  [4.05, 9.05, 11.9, 9.22, 4.2]
-oberved:  [ 6  8 11 11  5]
+observed:  [ 6  8 11 11  5]
 bins:  5
 
 Histogram Angles_data_left:
@@ -35,7 +35,7 @@ chisq: 7.37
 p:  11.74 %
 --
 expected:  [4.02, 4.2, 10.1, 7.52, 5.97]
-oberved:  [8 5 5 8 8]
+observed:  [8 5 5 8 8]
 bins:  [-0.155, -0.148, -0.144, -0.137, -0.132, -0.127]
 
 Histogram Angles_data_ahead:
@@ -45,7 +45,7 @@ chisq: 0.31
 p:  98.95 %
 --
 expected:  [5.74, 12.31, 9.12, 7.13, 6.35]
-oberved:  [ 6 11 10  7  7]
+observed:  [ 6 11 10  7  7]
 bins:  [-0.02, -0.008, 0.0, 0.005, 0.01, 0.03]
 
 Histogram Angles_data_right:
@@ -55,6 +55,6 @@ chisq: 0.25
 p:  99.26 %
 --
 expected:  [6.78, 6.79, 8.53, 11.37, 7.39]
-oberved:  [ 7  7  9 10  8]
+observed:  [ 7  7  9 10  8]
 bins:  [0.01, 0.122, 0.128, 0.134, 0.143, 0.163]
 
