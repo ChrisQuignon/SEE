@@ -1,0 +1,164 @@
+%\documentclass{beamer}
+%\usetheme{Pittsburgh}
+\documentclass{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{default}
+\usepackage[procnames]{listings}
+\usepackage{graphicx}
+%\usepackage[toc,page]{appendix}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{color}
+%\usepackage{csvsimple}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+
+
+
+%Bibliogrpahy?
+\usepackage{bibentry}
+%\nobibliography*
+%\bibentry{ }
+
+
+%Python
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+\lstset{language=Python,
+    basicstyle=\ttfamily\scriptsize,
+    keywordstyle=\color{keywords},
+    commentstyle=\color{comments},
+    stringstyle=\color{red},
+    identifierstyle=\color{green},
+    breaklines = true,
+    columns=fullflexible,
+    %Numbering and tabs
+    %numbers=left,
+    %numberstyle=\tiny\color{gray},
+    %stepnumber=2,
+    %numbersep=1em,
+    tabsize=4,
+    showspaces=false,
+    showstringspaces=false}
+
+\begin{document}
+
+\title{Camera calibration}
+\subtitle{Assignment No. 3}
+\author{
+  Matin, Maryam \\
+  Quignon, Christophe
+  %Familyname, Name
+}
+\date{\today}
+
+
+\maketitle
+
+
+\section{Design Report}
+
+\subsection{Calibration Setup}
+\paragraph{Description}
+Heikkila\cite{heikkila}
+Zhang\cite{zhang}
+
+\paragraph{Pitfalls}
+\begin{itemize}
+\item 
+\end{itemize}
+
+
+\subsection{Image estimation}
+\paragraph{Number of images}
+
+\paragraph{Image positions}
+
+
+\subsection{Parameter description}
+\paragraph{Code}
+\lstinputlisting[language=Python]{calibration.py}
+
+\paragraph{Output}
+
+\paragraph{Parameter description}
+%what do they mean
+\begin{itemize}
+\item
+%\item Parameter\\
+%Meaning
+\end{itemize}
+
+
+\subsection{Possible Problems}
+\paragraph{Calibration}
+%Error sources
+
+\paragraph{Experiment}
+%problems while testing including problems with laptop/camera
+
+
+
+%maybe we exclude this
+\section{Appendix}
+
+
+\subsection{Code}
+(See camshot.py)
+\lstinputlisting[language=Python]{camshot.py}
+
+\subsection{Output}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/testimg.jpg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/testimg.jpg}
+  %\caption{}
+  %\label{fig:} 
+\end{minipage}
+%\caption{}
+%\label{fig:}
+\end{figure}
+%Description
+
+%BIBLIOGRPAHY!
+\bibliographystyle{plain}%amsalpha
+\bibliography{bib.bib}
+%\bibentry{}
+
+
+%COPY AND PASTE FROM HERE
+
+%\begin{enumerate}
+% \item
+%\end{enumerate}
+
+%\href{link}{text}
+
+%\begin[Language=Python]{lstlisting}
+%#PYTHON CODE HERE
+%\end{lstlisting}
+
+%\lstinputlisting[language=Java]{ }
+
+%\csvautotabular[separator=semicolon]{data.csv}
+
+%\begin{figure}
+% \center
+% \includegraphics[width= cm]{img/ }
+% \caption{}
+%\end{figure}
+
+
+
+\end{document}
