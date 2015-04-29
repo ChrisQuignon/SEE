@@ -70,14 +70,23 @@ Zhang\cite{zhang}
 
 \paragraph{Pitfalls}
 \begin{itemize}
-\item 
+\item Lighting conditions can make the pattern indistinguishable
+\item The camera frame must not move
+\item The calibration pattern may be scaled or even distorted during the printing procedure
+\item The calibration pattern must be flat and not curved
+\item The background must not contain patterns similar to the calibration pattern
+\item When the captured imaged is stored, compression should not distort the calibration pattern
+\item The lens has to be clean
 \end{itemize}
 
 
 \subsection{Image estimation}
 \paragraph{Number of images}
+%Zhang\cite{zhang} stated a method that works with at least two different orientations.
 
 \paragraph{Image positions}
+%Either the image or the camera can be freely moved and the movement need not be known. (Zhang\cite{zhang}).
+%We start with an orthogonal view and then two rotations with roughly 30 $^\circ $ on every axis of the frame.
 
 
 \subsection{Parameter description}
@@ -100,8 +109,75 @@ Zhang\cite{zhang}
 \paragraph{Calibration}
 %Error sources
 
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/rotation.jpg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/lense.jpg}
+  %\caption{}
+  %\label{fig:} 
+\end{minipage}
+\caption{Rotation on the tripod (left) and a dirty aperture (right) are source of possible errors. In both images the background could disturb the calibration pattern.}
+\label{fig:errorsources}
+\end{figure}
+%Description
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.47\linewidth]{img/fixation_1.jpg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.3\linewidth]{img/fixation_2.jpg}
+  %\caption{}
+  %\label{fig:} 
+\end{minipage}
+\caption{The camera was fixed to the tripod to avoid displacements.}
+\label{fig:fixation}
+\end{figure}
+%Description
+
+
+
+
 \paragraph{Experiment}
 %problems while testing including problems with laptop/camera
+
+%The camera connected without any issues
+%It is important to release the camera after taking an image, otherwise it will stay blocked
+%One has to make sure which index to use, because the index destinguished between the built-in camera of the laptop and the usb camera
+%The camera is very light sensitive. It works best at low light.
+
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/testimgbad.jpg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/iso400.jpg}
+  %\caption{}
+  %\label{fig:} 
+\end{minipage}
+\caption{The camera is very light sensitive (left) in comparison to digital ISO 400 (right).}
+\label{fig:brightness}
+\end{figure}
+%Description
 
 
 
@@ -115,24 +191,6 @@ Zhang\cite{zhang}
 
 \subsection{Output}
 
-\begin{figure}[H]
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{img/testimg.jpg}
-  %\caption{}
-  %\label{fig:}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{img/testimg.jpg}
-  %\caption{}
-  %\label{fig:} 
-\end{minipage}
-%\caption{}
-%\label{fig:}
-\end{figure}
-%Description
 
 %BIBLIOGRPAHY!
 \bibliographystyle{plain}%amsalpha
