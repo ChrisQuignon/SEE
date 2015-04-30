@@ -173,6 +173,7 @@ for idx, set in enumerate([rs, ps]):#xs, ys,
         print 'mu: ', round(mu, 2)
         print 'sigma: ', round(sigma,2)
         print 'chisq:', round (chisq, 2)
+	#print 'p: ', round(p, 2),
         print 'p: ', round(p*100, 2), '%'
         print '--'
         print 'expected: ', map(lambda x : round(x, 2), expected)
