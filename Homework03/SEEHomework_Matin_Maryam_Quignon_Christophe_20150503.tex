@@ -84,12 +84,27 @@ Zhang\cite{zhang}
 \paragraph{Number of images}
 %Zhang\cite{zhang} stated a method that works with at least two different orientations.
 
+For the testrun, we user 20 images from the camera calibration toolbox that can be downloaded under \href{http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/calib_example.zip}{vision.caltech.edu/bouguetj/calib/\_doc/htmls/calib\_example.zip}
+
 \paragraph{Image positions}
 %Either the image or the camera can be freely moved and the movement need not be known. (Zhang\cite{zhang}).
 %We start with an orthogonal view and then two rotations with roughly 30 $^\circ $ on every axis of the frame.
 
 
 \subsection{Parameter description}
+\begin{itemize}
+\item
+\begin{lstlisting}[language=Python]
+chessdim = (12, 13)
+\end{lstlisting}
+The dimensionality of the chessboard is given as the number of inside corners
+\item
+\begin{lstlisting}[language=Python]
+criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
+\end{lstlisting}
+We stop the algorithms either after 30 iterations or if an accuracy of 0.001 is met.
+Description
+\end{itemize}
 
 \paragraph{Code}
 (See calibration.py)
