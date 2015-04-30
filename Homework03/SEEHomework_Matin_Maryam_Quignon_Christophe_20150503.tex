@@ -90,6 +90,7 @@ Zhang\cite{zhang}
 
 
 \subsection{Parameter description}
+
 \paragraph{Code}
 (See calibration.py)
 \lstinputlisting[language=Python]{calibration.py}
@@ -98,8 +99,42 @@ Zhang\cite{zhang}
 
 \paragraph{Parameter description}
 %what do they mean
+
+%TODO: insert real values
+
+
 \begin{itemize}
 \item
+\begin{lstlisting}[language=Python]
+fc = 671.13759, 680.77186]
+\end{lstlisting}
+Focal length
+
+\item
+\begin{lstlisting}[language=Python]
+cc = [319.5, 239.5]
+\end{lstlisting}
+Principal point
+
+\item
+\begin{lstlisting}[language=Python]
+alpha_c = [0.0] => angle of pixel  = 90.0 degrees
+\end{lstlisting}
+Skew
+
+\item
+\begin{lstlisting}[language=Python]
+kc = [0.0, 0.0, 0.0, 0.0, 0.0]
+\end{lstlisting}
+Distortion
+
+\item
+\begin{lstlisting}[language=Python]
+err = [0.45330, 0.38916]
+\end{lstlisting}
+Pixel error
+
+
 %\item Parameter\\
 %Meaning
 \end{itemize}

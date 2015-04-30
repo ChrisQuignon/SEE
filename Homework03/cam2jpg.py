@@ -9,7 +9,7 @@ if s: #no errors
     startWindowThread()
     imshow("cam-test",img)
     waitKey(1)
-    imwrite("images/testimg.jpg", img)
+    imwrite("img/testimg.jpg", img)
     cam.release()
     destroyWindow("cam-test")
     waitKey(1)
