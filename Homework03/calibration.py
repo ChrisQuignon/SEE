@@ -8,10 +8,10 @@ import glob
 images = glob.glob('img/*.tif')
 
 
-#stopping criteria
+#we stop after either 30 iterations or if the precision of 0.001 is met
 stop = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
-#dimensionality of the chesboard
+#dimensionality of the chessboard (inner cornerpoints)
 chessdim = (12, 13)
 
 #3D object points as a grid with z = 0
@@ -39,10 +39,9 @@ for fname in images:
     #The numbers of inside corners of the chessboard
     ret, corners = cv2.findChessboardCorners(gray, chessdim)
 
-    print 'Chessboard on image ', fname , ": ", ret
-
     # If found, add object points, image points (after refining them)
     if ret == True:
+        print 'Chessboard on image ', fname, ' found.'
         objpoints.append(objp)
         cv2.cornerSubPix(gray, corners, chessdim, (-1,-1), stop)
         imgpoints.append(corners)

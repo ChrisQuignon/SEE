@@ -92,68 +92,31 @@ For the testrun, we user 20 images from the camera calibration toolbox that can 
 
 
 \subsection{Parameter description}
-\begin{itemize}
-\item
-\begin{lstlisting}[language=Python]
-chessdim = (12, 13)
-\end{lstlisting}
-The dimensionality of the chessboard is given as the number of inside corners
-\item
-\begin{lstlisting}[language=Python]
-criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
-\end{lstlisting}
-We stop the algorithms either after 30 iterations or if an accuracy of 0.001 is met.
-Description
-\end{itemize}
-
-\paragraph{Code}
-(See calibration.py)
-\lstinputlisting[language=Python]{calibration.py}
-
-\paragraph{Output}
 
 \paragraph{Parameter description}
+\begin{itemize}
+\item ret\\
+%TODO Decription
+\item nret\\
+%TODO Decription
+\item nmtx\\
+%TODO Decription
+\item ndist\\
+%TODO Decription
+\item nrvecs\\
+%TODO Decription
+\item ntvecs\\
+%TODO Decription
+\item newcameramtx\\
+%TODO Decription
+\item nroi\\
+%TODO Decription
+\end{itemize}
 %what do they mean
 
-%TODO: insert real values
-
-
-\begin{itemize}
-\item
-\begin{lstlisting}[language=Python]
-fc = 671.13759, 680.77186]
-\end{lstlisting}
-Focal length
-
-\item
-\begin{lstlisting}[language=Python]
-cc = [319.5, 239.5]
-\end{lstlisting}
-Principal point
-
-\item
-\begin{lstlisting}[language=Python]
-alpha_c = [0.0] => angle of pixel  = 90.0 degrees
-\end{lstlisting}
-Skew
-
-\item
-\begin{lstlisting}[language=Python]
-kc = [0.0, 0.0, 0.0, 0.0, 0.0]
-\end{lstlisting}
-Distortion
-
-\item
-\begin{lstlisting}[language=Python]
-err = [0.45330, 0.38916]
-\end{lstlisting}
-Pixel error
-
-
-%\item Parameter\\
-%Meaning
-\end{itemize}
-
+\paragraph{Parameter output}
+(See output.txt)
+\lstinputlisting{output.txt}
 
 \subsection{Possible Problems}
 \paragraph{Calibration}
@@ -235,11 +198,41 @@ Pixel error
 \section{Appendix}
 
 
-\subsection{Code}
-(See cam2jpg.py)
+\subsection{cam2jpg.py}
 \lstinputlisting[language=Python]{cam2jpg.py}
 
+
+\subsection{calibration.py}
+\lstinputlisting[language=Python]{calibration.py}
+
+
 \subsection{Output}
+\begin{figure}[H]
+\centering
+  \includegraphics[width=.4\linewidth]{img/Image17.jpg}
+  %TODO write caption
+\caption{}
+\label{fig:}
+\end{figure}
+%Description
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=.4\linewidth]{img/Image17_corners.jpg}
+  %TODO write caption
+\caption{}
+\label{fig:}
+\end{figure}
+%Description
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=.4\linewidth]{img/Image17_undistort.jpg}
+  %TODO write caption
+\caption{}
+\label{fig:}
+\end{figure}
+%Description
 
 
 %BIBLIOGRPAHY!
