@@ -65,6 +65,34 @@ Assignment: 3.1}
 
 \subsection{Calibration Setup}
 \paragraph{Description}
+
+In this exercise we aim to calibrate a camera using some image patterns.
+
+In order to minimize the full distortion of the images received from the camera we need to have some distortion corrections regarding both radial and tangential distortions. For this goal we will set our camera at a fixed position and capture several still images of a printed checkerboard pattern from different orientations and translations with respect to the camera. we will then calculate all the intrinsic and extrinsic parameters of the camera to extract undistorted images. 
+
+In … Zhang introduces a new approach for camera calibration. Using his approach for a successful calibration we only need a few ( at least 2) pattern images. The internal camera model in the Mathlab toolbox for camera calibration is very similar to the one introduced by Heikkil... . In our experiments we will be using the OpenCV library of the similar toolbox using python. Using this toolbox one needs at least 10 image patterns. So for this experiment we decided to capture at least 20 image patterns from different angles We start with an orthogonal view and then two rotations with roughly 30 degrees on every axis of the frame and also from different distances from the camera.
+
+The code was implemented in python. The images are first converted to grayscale and then the corners and the dimensionality of the checkerboard is given. We will use and 8*8 checkerboard that with 20 mm length. The calibration stage is then done and we iterate the same steps until the errors are small enough or we reach a certain number of iterations.
+
+
+The tangential distortion is a manufacturing issue and  is due to imperfect alignment of the lens in the center of the camera. It is observed that in todays cameras this distortion is usually such small that we can simply neglect.
+
+
+
+\paragraph{Possible errors}
+\begin{itemize}
+\item If the distortion is high, it is possible that the extracted corners by the toolbox don't fit the real image corners. To solve this issue as suggested in [3 ], we can improve the corner extraction by entering an initial guess of the lens distortion coefficient which is a number between -1 and 1 and repeat it until the extracted corners are satisfactory.
+
+% [3] http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/example.html... 
+
+
+\item Another issue which may happen if the distortion is high, is that the program might not be able to detect the number of squares automatically. In this case we should enter the numbers manually.
+
+\item We can use the error plot to see how large the reprojection error is. Large error for a large number of images demonstrates that the corner extraction phase was not accurate enough and therefore we need to enhance that step by adding the predicted distortion option.
+
+\end{itemize}
+
+
 Heikkila\cite{heikkila}
 Zhang\cite{zhang}
 
@@ -96,20 +124,27 @@ For the testrun, we user 20 images from the camera calibration toolbox that can 
 \paragraph{Parameter description}
 \begin{itemize}
 \item ret\\
+Is True if the pattern is found in the image.
 %TODO Decription
-\item nret\\
+
+\item mtx\\
+Is the Output 3x3 floating-point camera matrix which contains information of the Focal length and the Principal point.The component on the last row and last column is set to 1.
+It depends on the camera only, so once calculated, it can be stored for future purposes.
 %TODO Decription
-\item nmtx\\
+\item dist\\
+Is the 1x5 distortion coefficients matrix.
 %TODO Decription
-\item ndist\\
+\item rvecs\\
+Output vector of rotation vectors estimated for each pattern view. That is, each k-th rotation vector together with the corresponding k-th translation vector brings the calibration pattern from the model coordinate space to the world coordinate space.
 %TODO Decription
-\item nrvecs\\
-%TODO Decription
-\item ntvecs\\
+\item tvecs\\
+Output vector of translation vectors estimated for each pattern view.
 %TODO Decription
 \item newcameramtx\\
+The optimal new camera matrix based on the free scaling parameter. The resulting image may include some black pixels corresponding to “virtual” pixels outside of the captured distorted image.
 %TODO Decription
-\item nroi\\
+\item roi\\
+Reigon of interest for croping the image to get the best undistorted image.
 %TODO Decription
 \end{itemize}
 %what do they mean
@@ -209,8 +244,9 @@ For the testrun, we user 20 images from the camera calibration toolbox that can 
 \subsection{Output}
 \begin{figure}[H]
 \centering
-  \includegraphics[width=.4\linewidth]{img/Image17.jpg}
-  %TODO write caption
+ \includegraphics[width=.4\linewidth]{img/Image17.jpg}
+  \caption{The original ditorted image}
+  %TODO write capti
 \caption{}
 \label{fig:}
 \end{figure}
@@ -219,6 +255,7 @@ For the testrun, we user 20 images from the camera calibration toolbox that can 
 \begin{figure}[H]
 \centering
   \includegraphics[width=.4\linewidth]{img/Image17_corners.jpg}
+  \caption{The detected corners and their reprojection}
   %TODO write caption
 \caption{}
 \label{fig:}
@@ -228,6 +265,7 @@ For the testrun, we user 20 images from the camera calibration toolbox that can 
 \begin{figure}[H]
 \centering
   \includegraphics[width=.4\linewidth]{img/Image17_undistort.jpg}
+  \caption{The undistorted image with all the edges straight. The distortions were resolved and the ROI was cropped}
   %TODO write caption
 \caption{}
 \label{fig:}
