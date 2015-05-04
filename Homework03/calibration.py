@@ -5,14 +5,14 @@ import glob
 
 #based on http://opencv-python-tutroals.readthedocs.org/en/latest/py_tutorials/py_calib3d/py_calibration/py_calibration.html
 
-images = glob.glob('img/*.tif')
+images = glob.glob('img/captures/*.jpg')
 
 
 #we stop after either 30 iterations or if the precision of 0.001 is met
 stop = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
 #dimensionality of the chessboard (inner cornerpoints)
-chessdim = (12, 13)
+chessdim = (8,8)
 
 #3D object points as a grid with z = 0
 objp = np.zeros((chessdim[0]*chessdim[1],3), np.float32)
@@ -70,7 +70,7 @@ print '\ndist: \n', dist
 print '\nrvecs: \n', rvecs
 print '\ntvecs: \n', tvecs
 
-img = cv2.imread('img/Image17.tif')
+img = cv2.imread('img/captures/capture0.jpg')
 h,  w = img.shape[:2]
 newcameramtx, roi = cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
 
@@ -83,4 +83,4 @@ dst = cv2.undistort(img, mtx, dist, None, newcameramtx)
 # crop the image
 x,y,w,h = roi
 dst = dst[y:y+h, x:x+w]
-cv2.imwrite('img/Image17_undistort.jpg',dst)
+cv2.imwrite('img/captures/capture0_undistorted.jpg',dst)
