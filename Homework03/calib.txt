@@ -1,0 +1,132 @@
+True
+Chessboard on image  img/captures/capture0.jpg  found.
+True
+Chessboard on image  img/captures/capture16.jpg  found.
+True
+Chessboard on image  img/captures/capture19.jpg  found.
+True
+Chessboard on image  img/captures/capture3.jpg  found.
+False
+True
+Chessboard on image  img/captures/capture21.jpg  found.
+True
+Chessboard on image  img/captures/capture4.jpg  found.
+True
+Chessboard on image  img/captures/capture5.jpg  found.
+True
+Chessboard on image  img/captures/capture9.jpg  found.
+True
+Chessboard on image  img/captures/capture15.jpg  found.
+True
+Chessboard on image  img/captures/capture7.jpg  found.
+True
+Chessboard on image  img/captures/capture2.jpg  found.
+False
+True
+Chessboard on image  img/captures/capture17.jpg  found.
+False
+True
+Chessboard on image  img/captures/capture18.jpg  found.
+False
+True
+Chessboard on image  img/captures/capture6.jpg  found.
+True
+Chessboard on image  img/captures/capture1.jpg  found.
+True
+Chessboard on image  img/captures/capture10.jpg  found.
+True
+Chessboard on image  img/captures/capture20.jpg  found.
+False
+
+ret: 
+3.2317332362
+
+mtx: 
+[[  1.47122399e+03   0.00000000e+00   9.64622640e+02]
+ [  0.00000000e+00   1.46899288e+03   5.93186469e+02]
+ [  0.00000000e+00   0.00000000e+00   1.00000000e+00]]
+
+dist: 
+[[ 0.037758   -0.14859172  0.00826962 -0.00601555  0.56745094]]
+
+rvecs: 
+[array([[ 0.38670697],
+       [ 0.66128219],
+       [ 0.73340313]]), array([[-0.53204079],
+       [-1.12062932],
+       [ 0.77312783]]), array([[ 0.72833702],
+       [ 0.09946742],
+       [ 1.22969067]]), array([[-0.22163643],
+       [-0.6469791 ],
+       [ 0.81515414]]), array([[-0.27722909],
+       [-0.04777607],
+       [ 0.54939627]]), array([[ 0.08398153],
+       [ 0.21287801],
+       [ 0.65602266]]), array([[ 0.59188441],
+       [ 0.89788149],
+       [ 0.39936111]]), array([[ 0.72487981],
+       [-0.18722559],
+       [ 0.76600129]]), array([[ 0.27421807],
+       [-0.02756757],
+       [ 0.81209866]]), array([[-0.75549052],
+       [ 1.00848581],
+       [ 1.26946789]]), array([[-0.28784021],
+       [-0.52156617],
+       [ 0.67692254]]), array([[-0.48549812],
+       [-1.13389324],
+       [ 0.74178881]]), array([[ 0.43641868],
+       [-0.01672248],
+       [ 0.01336404]]), array([[ 0.65318251],
+       [ 0.27499083],
+       [ 0.16910502]]), array([[ 0.34540078],
+       [ 0.23909355],
+       [ 0.23461675]]), array([[ 0.25226911],
+       [-0.36353068],
+       [ 0.33218719]]), array([[-0.70020344],
+       [-0.78237642],
+       [ 0.98578342]])]
+
+tvecs: 
+[array([[  6.50279683],
+       [ -8.01986885],
+       [ 24.00214147]]), array([[ -7.45104158],
+       [ -4.46642399],
+       [ 24.10515353]]), array([[ -0.64714952],
+       [ -9.12380944],
+       [ 34.45461585]]), array([[-13.02543057],
+       [-11.25529843],
+       [ 41.59848307]]), array([[-12.52811688],
+       [  0.48544188],
+       [ 41.07968367]]), array([[-11.50065859],
+       [ -3.26784127],
+       [ 34.17843979]]), array([[  7.64652612],
+       [ -8.2891119 ],
+       [ 31.68348662]]), array([[  5.77815122],
+       [ -2.84678881],
+       [ 41.2477978 ]]), array([[  4.11767479],
+       [ -0.75493128],
+       [ 35.40046151]]), array([[  2.68010384],
+       [  2.17697019],
+       [ 33.19108096]]), array([[ -3.26630068],
+       [ -5.48424066],
+       [ 20.49213863]]), array([[ -7.86761193],
+       [ -5.57781634],
+       [ 23.14883496]]), array([[ -3.23020958],
+       [ -8.98949879],
+       [ 35.55382278]]), array([[  2.90094378],
+       [ -6.81257398],
+       [ 31.73170368]]), array([[  0.36445543],
+       [ -8.44835194],
+       [ 27.39810843]]), array([[ -6.19028299],
+       [  0.71558249],
+       [ 55.04979816]]), array([[-13.89242565],
+       [-10.7743207 ],
+       [ 40.5102484 ]])]
+
+newcameramtx: 
+[[  1.51131555e+03   0.00000000e+00   9.54220301e+02]
+ [  0.00000000e+00   1.46904553e+03   5.97268685e+02]
+ [  0.00000000e+00   0.00000000e+00   1.00000000e+00]]
+
+roi: 
+(26, 33, 1866, 1019)

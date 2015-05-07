@@ -1,0 +1,100 @@
+Chessboard on image  img/captures/capture0.jpg  found.
+Chessboard on image  img/captures/capture14.jpg  found.
+Chessboard on image  img/captures/capture4.jpg  found.
+Chessboard on image  img/captures/capture5.jpg  found.
+Chessboard on image  img/captures/capture9.jpg  found.
+Chessboard on image  img/captures/capture15.jpg  found.
+Chessboard on image  img/captures/capture7.jpg  found.
+Chessboard on image  img/captures/capture2.jpg  found.
+Chessboard on image  img/captures/capture11.jpg  found.
+Chessboard on image  img/captures/capture17.jpg  found.
+Chessboard on image  img/captures/capture13.jpg  found.
+Chessboard on image  img/captures/capture18.jpg  found.
+Chessboard on image  img/captures/capture6.jpg  found.
+Chessboard on image  img/captures/capture1.jpg  found.
+Chessboard on image  img/captures/capture10.jpg  found.
+
+ret: 
+2.09997513574
+
+mtx: 
+[[  1.43774409e+03   0.00000000e+00   1.02357734e+03]
+ [  0.00000000e+00   1.44739160e+03   5.77025025e+02]
+ [  0.00000000e+00   0.00000000e+00   1.00000000e+00]]
+
+dist: 
+[[-0.06583522  0.36271426  0.00494705  0.00472301 -0.58639307]]
+
+rvecs: 
+[array([[ 0.33045178],
+       [ 0.04349367],
+       [ 1.5192612 ]]), array([[ 0.60670409],
+       [ 0.70875987],
+       [-1.37727792]]), array([[ 0.23516381],
+       [ 0.18154121],
+       [ 1.4195369 ]]), array([[ 0.52103922],
+       [-0.3365763 ],
+       [ 0.955668  ]]), array([[-0.42505801],
+       [-0.71845019],
+       [ 0.39888813]]), array([[ 0.7462029 ],
+       [-0.23855412],
+       [ 0.6272952 ]]), array([[-0.4711453 ],
+       [ 0.3899457 ],
+       [ 1.45974472]]), array([[-0.91282346],
+       [-0.93066325],
+       [ 0.58287004]]), array([[-1.07915986],
+       [ 0.8438076 ],
+       [ 1.23710895]]), array([[-0.82612371],
+       [-0.11550235],
+       [-0.1860781 ]]), array([[ 1.08311222],
+       [-0.75955728],
+       [ 1.23799505]]), array([[-1.17650783],
+       [-0.04892462],
+       [-0.1466574 ]]), array([[-0.40329707],
+       [-0.76346416],
+       [-1.51229863]]), array([[ 0.49280091],
+       [ 1.19593099],
+       [ 0.04427619]]), array([[-0.10418293],
+       [-0.02055197],
+       [ 0.50125834]])]
+
+tvecs: 
+[array([[  5.3551773 ],
+       [ -3.80189725],
+       [ 12.90547014]]), array([[  4.14948202],
+       [  7.02228701],
+       [ 27.32748087]]), array([[  3.97425876],
+       [-10.2721167 ],
+       [ 34.81386169]]), array([[-11.21988765],
+       [-11.20446991],
+       [ 30.30125608]]), array([[-10.33386824],
+       [ -4.46207062],
+       [ 25.20880659]]), array([[ -9.94862402],
+       [ -7.01893743],
+       [ 24.60421268]]), array([[  1.44809159],
+       [ -4.22816711],
+       [ 20.30852664]]), array([[ -9.37602695],
+       [ -3.52777742],
+       [ 22.68607233]]), array([[  0.10510007],
+       [ -1.62588407],
+       [ 20.97669435]]), array([[ -7.07142674],
+       [ -7.06254446],
+       [ 19.73313679]]), array([[  6.8715696 ],
+       [ -4.03771983],
+       [ 13.49598075]]), array([[ -5.57781623],
+       [ -1.01848202],
+       [ 16.38282433]]), array([[ -4.52213904],
+       [  6.8305129 ],
+       [ 27.72154709]]), array([[  6.62720574],
+       [ -2.4832281 ],
+       [ 23.80077371]]), array([[  4.81523427],
+       [ -5.67416651],
+       [ 21.29524667]])]
+
+newcameramtx: 
+[[  3.96437439e+02   0.00000000e+00   1.66572658e+03]
+ [  0.00000000e+00   3.91415039e+02   9.27924228e+02]
+ [  0.00000000e+00   0.00000000e+00   1.00000000e+00]]
+
+roi: 
+(1374, 771, 538, 292)

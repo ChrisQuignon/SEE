@@ -163,27 +163,28 @@ Reigon of interest for cropping the image to get the best undistorted image.
 \caption{Rotation on the tripod (left) and a dirty aperture (right) are source of possible errors.}
 \label{fig:errorsources}
 \end{figure}
-%Description
+%TODO DESCRIPTION
+
+
 
 \begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=.47\linewidth]{img/fixation_1.jpg}
+  \includegraphics[width=.8\linewidth]{img/brightness.jpg}
   %\caption{}
   %\label{fig:}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=1.3\linewidth]{img/fixation_2.jpg}
+  \includegraphics[width=.8\linewidth]{img/bright_detail.jpg}
   %\caption{}
   %\label{fig:} 
 \end{minipage}
-\caption{The camera was fixed to the tripod to avoid displacements.}
-\label{fig:fixation}
+\caption{An image taken (left) including detail view (right) with too high brightness}
+\label{fig:brightness}
 \end{figure}
-%Description
-
+%TODO DESCFRIPTION
 
 
 
@@ -213,12 +214,34 @@ Reigon of interest for cropping the image to get the best undistorted image.
 \caption{The camera is very light sensitive (left) in comparison to digital ISO 400 (right). In both images the background could disturb the calibration pattern.}
 \label{fig:brightness}
 \end{figure}
-%Description
+%TODO DESCRIPTION
 
 
 
 %maybe we exclude this
 \section{Appendix}
+
+\subsection{Example images}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/cap_18.jpg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/cap_18_corners.jpg}
+  %\caption{}
+  %\label{fig:} 
+\end{minipage}
+\caption{One of the images taken and the according corners. (resized)}
+\label{fig:output}
+\end{figure}
+
+%TODO DESCRIPTION
 
 
 \subsection{cam2jpg.py}
@@ -228,27 +251,6 @@ Reigon of interest for cropping the image to get the best undistorted image.
 \subsection{calibration.py}
 \lstinputlisting[language=Python]{calibration.py}
 
-
-\subsection{Output}
-\begin{figure}[H]
-\centering
- \includegraphics[width=.4\linewidth]{img/Image17.jpg}
-  \caption{The original ditorted image}
-  %TODO write capti
-\caption{}
-\label{fig:}
-\end{figure}
-%Description
-
-\begin{figure}[H]
-\centering
-  \includegraphics[width=.4\linewidth]{img/Image17_corners.jpg}
-  \caption{The detected corners and their reprojection}
-  %TODO write caption
-\caption{}
-\label{fig:}
-\end{figure}
-%Description
 
 
 

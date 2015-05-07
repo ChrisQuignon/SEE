@@ -5,7 +5,7 @@ import glob
 
 #based on http://opencv-python-tutroals.readthedocs.org/en/latest/py_tutorials/py_calib3d/py_calibration/py_calibration.html
 
-images = glob.glob('img/captures/*.jpg')
+images = glob.glob('img/capture/*.jpg')
 
 
 #we stop after either 30 iterations or if the precision of 0.001 is met
@@ -55,8 +55,6 @@ for fname in images:
         cv2.imwrite(fname[0] + "_corners.jpg", img)
         # cv2.waitKey(0)
 
-        # print gray.shape[::-1]
-
 
 cv2.destroyAllWindows()
 
@@ -70,17 +68,9 @@ print '\ndist: \n', dist
 print '\nrvecs: \n', rvecs
 print '\ntvecs: \n', tvecs
 
-img = cv2.imread('img/captures/capture0.jpg')
+img = cv2.imread('img/capture/cap_1.jpg')
 h,  w = img.shape[:2]
 newcameramtx, roi = cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),1,(w,h))
 
 print '\nnewcameramtx: \n', newcameramtx
 print '\nroi: \n', roi
-
-# undistort
-dst = cv2.undistort(img, mtx, dist, None, newcameramtx)
-
-# crop the image
-x,y,w,h = roi
-dst = dst[y:y+h, x:x+w]
-cv2.imwrite('img/captures/capture0_undistorted.jpg',dst)

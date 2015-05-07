@@ -5,7 +5,7 @@ cam = VideoCapture(0)   # 0 -> index of camera
 
 cam.set(cv.CV_CAP_PROP_FRAME_WIDTH, 1920)
 cam.set(cv.CV_CAP_PROP_FRAME_HEIGHT, 1080)
-cam.set(cv.CV_CAP_PROP_BRIGHTNESS, 0.4)
+cam.set(cv.CV_CAP_PROP_BRIGHTNESS, 0.2)
 
 i = 0
 
@@ -25,7 +25,7 @@ while(True):
             break
         if waitKey(155) & 0xFF == ord('s'):
             waitKey(1)
-            imwrite("img/capture" + str(i) + ".jpg", gray)
+            imwrite("img/capture/cap_" + str(i) + ".jpg", gray)
             i = i + 1
             waitKey(1)
             # break
