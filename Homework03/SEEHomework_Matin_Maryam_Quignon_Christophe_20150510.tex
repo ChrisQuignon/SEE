@@ -61,109 +61,45 @@ Assignment: 3.1}
 \maketitle
 
 
-\section{Design Report}
+\section{Description of the calibration process}
 
-\subsection{Calibration Setup}
+\subsection{Overall process}
 \paragraph{Description}
 
-In this exercise we aim to calibrate a camera using some image patterns.
+In this assignment we executed the camera calibration script which we had previously implemented using python-OpenCV library. We used a set of camera captured images from our own printed pattern which is an 8x8 square checkerboard (the length of each square is 2 cm).\\
 
-In order to minimize the full distortion of the images received from the camera we need to have some distortion corrections regarding both radial and tangential distortions. For this goal we will set our camera at a fixed position and capture several still images of a printed checkerboard pattern from different orientations and translations with respect to the camera. we will then calculate all the intrinsic and extrinsic parameters of the camera to extract undistorted images. 
+We fixed and sticked the pattern to a clip pad to ensure the pattern was completely flat. We pointed the camera downwards and placed it at a fixed position. The resolution of the camera was also set to Full HD (1920 x 1080 pixels). We then tried to capture images by moving the pattern in front of the camera. We placed the pattern at different poses in such a way that it covers different  possible orientations and distances in camera's field of view. As discussed before we start with an orthogonal view and then two rotations with roughly 30 $^\circ $ on every axis of the frame.\\
 
-Zhang\cite{zhang}  introduces a new approach for camera calibration. Using his approach for a successful calibration we only need a few ( at least 2) pattern images. The internal camera model in the Mathlab toolbox for camera calibration is very similar to the one introduced by Heikkil \cite{heikkila}. In our experiments we will be using the OpenCV library of the similar toolbox using python. Using this toolbox one needs at least 10 image patterns. So for this experiment we decided to capture at least 20 image patterns from different angles We start with an orthogonal view and then two rotations with roughly 30 degrees on every axis of the frame and also from different distances from the camera.
-
-The code was implemented in python. The images are first converted to grayscale and then the corners and the dimensionality of the checkerboard is given. We will use and 8*8 checkerboard that with 20 mm length. The calibration stage is then done and we iterate the same steps until the errors are small enough or we reach a certain number of iterations.
+The Python-OpenCV implementation of camera calibration doesn't provide us with error estimates and only gives information about the initial and new calibrated camera matrices, rotation and translation matrices, distortion coefficients and region of interest and also a return value which says whether the checkerboard was found or not. However these information were still enough to have an estimation of the accuracy of the calibration process.\\
 
 
-The tangential distortion is a manufacturing issue and  is due to imperfect alignment of the lens in the center of the camera. It is observed that in todays cameras this distortion is usually such small that we can simply neglect.
+The intrinsic parameters of the camera which are unique to each camera and hence can be used in the future include information about focal length and the principal (optical) point (usually at the center of the image). The first two elements of the old and new camera matrices in the first and second columns represent the focal length and the values on the third column represent the principal point of the camera. \\
+
+As discussed in the class, before starting the experiments we turned on the camera and let it warm up for an hour and then turned it off to cool it down. We started taking our images after turning it on again and when it got back to the steady state. Luckily we didn't face any auto-focusing issues. We did the calibration process 2 times and for 2 different image sets and recorded our findings. At each turn we captured almost 20 different images.\\
 
 
 
-\paragraph{Possible errors}
+\section{First Experiment}
+
+\subsection{Output}
+
+In our first experiment the brightness of the images were high and the following results were achieved (See run1.txt) :\\
+
+
+\lstinputlisting{run1.txt} 
+
+
+
+\subsection{Analysis}
+
+As it can be seen here the pattern corners were detected for 15 images. In this experiment we observed more differences between the values of the fx and fy in the calibrated camera matrix in comparision to the initial camera matrix. We also expected the RoI to be almost the size of the original image but the numbers were far different than the original frame size.\\
+
+
+
+\paragraph{Problem}
 \begin{itemize}
-\item If the distortion is high, it is possible that the extracted corners by the toolbox don't fit the real image corners. To solve this issue as suggested in [3 ], we can improve the corner extraction by entering an initial guess of the lens distortion coefficient which is a number between -1 and 1 and repeat it until the extracted corners are satisfactory.
-
-%\href{http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/example.html...}{vision.caltech.edu/bouguetj/calib\_doc/htmls/example.html...}  
-
-
-\item Another issue which may happen if the distortion is high, is that the program might not be able to detect the number of squares automatically. In this case we should enter the numbers manually.
-
-\item We can use the error plot to see how large the reprojection error is. Large error for a large number of images demonstrates that the corner extraction phase was not accurate enough and therefore we need to enhance that step by adding the predicted distortion option.
-
+\item The problem here was that since the images were too bright, at some points the brightness makes the grid appear such that the corners are not touching each other so the detection becomes imprecise. Fig. 1 illustrates this finding.\\
 \end{itemize}
-
-\paragraph{Pitfalls}
-\begin{itemize}
-\item Lighting conditions can make the pattern indistinguishable
-\item The camera frame must not move
-\item The calibration pattern may be scaled or even distorted during the printing procedure
-\item The calibration pattern must be flat and not curved
-\item The background must not contain patterns similar to the calibration pattern
-\item When the captured imaged is stored, compression should not distort the calibration pattern
-\item The lens has to be clean
-\end{itemize}
-
-
-\subsection{Image estimation}
-\paragraph{Number of images}
-%Zhang\cite{zhang} stated a method that works with at least two different orientations.
-
-For the testrun, we user 20 images from the camera calibration toolbox that can be downloaded under \href{http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/calib_example.zip}{vision.caltech.edu/bouguetj/calib/\_doc/htmls/calib\_example.zip}
-
-\paragraph{Image positions}
-%Either the image or the camera can be freely moved and the movement need not be known. (Zhang\cite{zhang}).
-%We start with an orthogonal view and then two rotations with roughly 30 $^\circ $ on every axis of the frame.
-
-
-\subsection{Parameter description}
-
-\paragraph{Parameter description}
-\begin{itemize}
-\item ret\\
-Is True if the pattern is found in the image.
-
-\item mtx\\
-Is the Output 3x3 floating-point camera matrix which contains information of the Focal length and the Principal point.The component on the last row and last column is set to 1.
-It depends on the camera only, so once calculated, it can be stored for future purposes.
-\item dist\\
-Is the 1x5 distortion coefficients matrix.
-\item rvecs\\
-Output vector of rotation vectors estimated for each pattern view. That is, each k-th rotation vector together with the corresponding k-th translation vector brings the calibration pattern from the model coordinate space to the world coordinate space.
-\item tvecs\\
-Output vector of translation vectors estimated for each pattern view.
-\item newcameramtx\\
-The optimal new camera matrix based on the free scaling parameter. The resulting image may include some black pixels corresponding to “virtual” pixels outside of the captured distorted image.
-\item roi\\
-Reigon of interest for cropping the image to get the best undistorted image.
-\end{itemize}
-
-\paragraph{Parameter output}
-(See last.out)
-\lstinputlisting{last.out}
-
-\subsection{Possible Problems}
-%\paragraph{Calibration}
-%Error sources
-
-
-\begin{figure}[H]
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{img/rotation.jpg}
-  %\caption{}
-  %\label{fig:}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{img/lense.jpg}
-  %\caption{}
-  %\label{fig:} 
-\end{minipage}
-\caption{Rotation on the tripod (left) and a dirty aperture (right) are source of possible errors.}
-\label{fig:errorsources}
-\end{figure}
-%TODO DESCRIPTION
 
 
 
@@ -181,10 +117,165 @@ Reigon of interest for cropping the image to get the best undistorted image.
   %\caption{}
   %\label{fig:} 
 \end{minipage}
-\caption{An image taken (left) including detail view (right) with too high brightness}
+\caption{Sample of highly brightened images (left) and its detailed view (right)}
 \label{fig:brightness}
 \end{figure}
-%TODO DESCFRIPTION
+
+
+
+\section{Second Experiment}
+
+\subsection{Output}
+
+In the second run, we reduced the brightness of the images and repeated image capturing. We captured 22 images out of which in 18 cases the corners were detected. Fig. 2 represents the images captured and the detected corners for these images. The outputs of the calibration are represented below: (See also test.txt)\\
+ 
+\lstinputlisting{test.txt} 
+
+
+
+\subsection{Analysis}
+
+In this experiment the results of the focal lengths obtained for the new camera matrix are  closer to each other than the original camera matrix so it is more centered. We can also see that the RoI is closer to the original image size and hence we have had less distortions to be cut off.\\
+
+%images
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/1.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/2.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/3.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/4.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/5.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/6.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/8.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/9.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/10.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+
+%\caption{Histograms of the angles and distances of the right run.}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/11.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/12.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/13.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/14.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/16.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/17.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/18.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/19.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{img/21.jpeg}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}
+
+\caption{Captured images (left) and their detected corners (right)}
+\end{figure}
+
+
+Therefore, in general we can conclude that the second calibrated camera matrix is better to be as our camera model.\\
+
+\section{General possible errors and pitfalls}
+
+\begin{itemize}
+\item The camera is very light sensitive. It works best at low light. Lighting conditions can make the pattern indistinguishable
+\item The camera frame must not move.
+\item The calibration pattern may be scaled or even distorted during the printing procedure.
+\item The calibration pattern must be flat and not curved
+\item The background must not contain patterns similar to the calibration pattern.
+\item It is important to release the camera after taking an image, otherwise it will stay blocked
+\item When the captured imaged is stored, compression should not distort the calibration pattern.
+\item The lens has to be clean.
+\end{itemize}
 
 
 
@@ -192,57 +283,11 @@ Reigon of interest for cropping the image to get the best undistorted image.
 %problems while testing including problems with laptop/camera
 
 %The camera connected without any issues
-%It is important to release the camera after taking an image, otherwise it will stay blocked
+
 %One has to make sure which index to use, because the index destinguished between the built-in camera of the laptop and the usb camera
-%The camera is very light sensitive. It works best at low light.
 
 
-\begin{figure}[H]
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{img/testimgbad.jpg}
-  %\caption{}
-  %\label{fig:}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{img/iso400.jpg}
-  %\caption{}
-  %\label{fig:} 
-\end{minipage}
-\caption{The camera is very light sensitive (left) in comparison to digital ISO 400 (right). In both images the background could disturb the calibration pattern.}
-\label{fig:brightness}
-\end{figure}
-%TODO DESCRIPTION
-
-
-
-%maybe we exclude this
 \section{Appendix}
-
-\subsection{Example images}
-
-\begin{figure}[H]
-\centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{img/cap_18.jpg}
-  %\caption{}
-  %\label{fig:}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{img/cap_18_corners.jpg}
-  %\caption{}
-  %\label{fig:} 
-\end{minipage}
-\caption{One of the images taken and the according corners. (resized)}
-\label{fig:output}
-\end{figure}
-
-%TODO DESCRIPTION
-
 
 \subsection{cam2jpg.py}
 \lstinputlisting[language=Python]{cam2jpg.py}
