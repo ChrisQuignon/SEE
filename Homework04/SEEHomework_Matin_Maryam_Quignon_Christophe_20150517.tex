@@ -118,14 +118,14 @@ The center of the marker was placed at the center of motion of the robot as seen
   %\caption{}
   %\label{fig:} 
 \end{minipage}
-\caption{The camea view of the robot with marker up(left) and down(right).}
+\caption{The camera view of the robot with marker up(left) and down(right).}
 \label{fig:camera}
 \end{figure}
 %Description
 
 \section{Estimation of pose measurement}
 The pose was recorded in roll, pitch and yaw. We only use roll because the robot can not leave the ground. The roll is depicted as the orientation of the triangle in the Figures below.\\
-Those figures also show how the measurements have a gap when the marker tracking switched from one camera to another.
+Those figures also show how the measurements have a gap when the marker tracking switched from one camera to another. Please note that in timely order the camera with blue markers recorded the start of the run and the camera with red markers recorded the end. Thus the two colors are not spatially related as the y dimension suggests.
 
 \subsection{ahead}
 %AHEAD
@@ -133,18 +133,37 @@ Those figures also show how the measurements have a gap when the marker tracking
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{img/ahead.png}
+  \includegraphics[width=.8\linewidth]{img/ahead_n.png}
   %\caption{}
   %\label{fig:}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{img/ahead_pc.png}
+  \includegraphics[width=.8\linewidth]{img/ahead_pc_n.png}
   %\caption{}
   %\label{fig:} 
 \end{minipage}
-\caption{Recordings of the ahead movements in cartesian and polar coordinates.}
+\caption{Recordings of the ahead movements in cartesian and polar coordinates, colored by camera recording.}
 \label{fig:ahead}
+\end{figure}
+%Description
+%AHEAD
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/ahead_f.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/ahead_pc_f.png}
+  %\caption{}
+  %\label{fig:} 
+\end{minipage}
+\caption{Final positions of the ahead movements in cartesian and polar coordinates.}
+\label{fig:ahead_f}
 \end{figure}
 %Description
 
@@ -155,21 +174,40 @@ Those figures also show how the measurements have a gap when the marker tracking
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{img/left.png}
+  \includegraphics[width=.8\linewidth]{img/left_n.png}
   %\caption{}
   %\label{fig:}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{img/left_pc.png}
+  \includegraphics[width=.8\linewidth]{img/left_pc_n.png}
   %\caption{}
   %\label{fig:} 
 \end{minipage}
-\caption{Recordings of the left movements in cartesian and polar coordinates.}
+\caption{Recordings of the left movements in cartesian and polar coordinates, colored by camera recording.}
 \label{fig:left}
 \end{figure}
 %Description
 
+%LEFT
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/left_f.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/left_pc_f.png}
+  %\caption{}
+  %\label{fig:} 
+\end{minipage}
+\caption{Final positions of the recordings of the left movements in cartesian and polar coordinates, colored by camera recording.}
+\label{fig:left_f}
+\end{figure}
+%Description
 
 \subsection{right}
 %RIGHT
@@ -177,20 +215,41 @@ Those figures also show how the measurements have a gap when the marker tracking
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{img/right.png}
+  \includegraphics[width=.8\linewidth]{img/right_n.png}
   %\caption{}
   %\label{fig:}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{img/right_pc.png}
+  \includegraphics[width=.8\linewidth]{img/right_pc_n.png}
   %\caption{}
   %\label{fig:} 
 \end{minipage}
-\caption{Recordings of the right movements in cartesian and polar coordinates.}
+\caption{Recordings of the right movements in cartesian and polar coordinates, colored by camera recording.}
 \label{fig:right}
 \end{figure}
 %Description
+
+%RIGHT
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/right_f.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{img/right_pc_f.png}
+  %\caption{}
+  %\label{fig:} 
+\end{minipage}
+\caption{Final positions of the recordings of the right movements in cartesian and polar coordinates.}
+\label{fig:right}
+\end{figure}
+%Description
+
 
 \subsection{box plots}
 The gaps in the recordings made it necessary to not exclude outliers in from the box plots.
@@ -200,13 +259,13 @@ The gaps in the recordings made it necessary to not exclude outliers in from the
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{img/BoxplotAngleNorm.png}
+  \includegraphics[width=.8\linewidth]{img/BoxplotAngleNorm_f.png}
   %\caption{}
   %\label{fig:}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{img/BoxplotDistance.png}
+  \includegraphics[width=.8\linewidth]{img/BoxplotDistance_f.png}
   %\caption{}
   %\label{fig:} 
 \end{minipage}

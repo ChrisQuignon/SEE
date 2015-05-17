@@ -16,6 +16,7 @@ left = glob.glob('recordings/left*')
 xs = []
 ys = []
 rolls = []
+cams = []
 
 files=['right', 'ahead', 'left']
 
@@ -44,9 +45,17 @@ for filenames in [right, ahead, left]:
 
             #filter tags
             data = [d for d in data if d['tag'] == '37599']
-            set.extend(data)
 
-    set = sorted(set, key=lambda k: k['time'])
+            #FILTER BY CAMERA
+            data = [d for d in data if d['cam'] == 'lifecam20']
+            ymax = max(data, lambda y : y['y'])
+            print ymax[0]
+            set.append(ymax[0])
+
+            #NO FILTER
+            # set.extend(data)
+
+    # set = sorted(set, key=lambda k: k['time'])
     sets.append(set)
 
 
@@ -54,16 +63,25 @@ for set in sets:
     x = [d['x'] for d in set]
     y = [d['y'] for d in set]
     roll = [d['roll'] for d in set]
+
+    cam = []
+    for d in set:
+        if d['cam'] == 'lifecam19':
+            cam.append('b')
+        else:
+            cam.append('r')
+
     xs.append(x)
     ys.append(y)
     rolls.append(roll)
+    cams.append(cam)
 
 #
 ##PLOT CARTESIAN COORDINATES
 for i in range(len(xs)):
 
     for j in range(len(xs[i])):
-        pyplot.scatter(xs[i][j], ys[i][j], c = 'black', marker = (3, 0, rolls[i][j]*57.3), facecolor='None', s = 80)
+        pyplot.scatter(xs[i][j], ys[i][j], color = cams[i][j], marker = (3, 0, rolls[i][j]*57.3), facecolor='None', s = 80)
     # pyplot.scatter(m_x, m_y, color = 'g', zorder = 1, s = 40, alpha = 0.5)
 
     pyplot.title('Cartesian Coordinates ' + files[i])
@@ -71,7 +89,7 @@ for i in range(len(xs)):
     pyplot.xlabel('x in mm')
     pyplot.axes().set_aspect('equal', 'datalim')
     pyplot.grid(True)
-    pyplot.locator_params(nbins=10)
+    # pyplot.locator_params(nbins=10)
     pyplot.savefig('img/' + files[i]+'.png')
     pyplot.clf()
 
@@ -102,7 +120,7 @@ for i in range(len(xs)):
     pyplot.locator_params(nbins=10)
 
     for j in range(len(r)):
-        pyplot.scatter(p[j], r[j], c = 'black', marker = (3, 0, rolls[i][j]*57.3), facecolor='None', s = 80)
+        pyplot.scatter(p[j], r[j], color = cams[i][j], marker = (3, 0, rolls[i][j]*57.3), facecolor='None', s = 80)
 
     pyplot.ylabel('distance in mm')
     pyplot.xlabel('angle in radians')
@@ -123,7 +141,7 @@ pyplot.grid(True)
 pyplot.locator_params(nbins=10)
 pyplot.boxplot(rs, sym='')
 pyplot.ylabel('distance in cm')
-pyplot.xticks([1, 2, 3], names, rotation='horizontal')
+pyplot.xticks([1, 2, 3], files, rotation='horizontal')
 pyplot.savefig('img/BoxplotDistance.png',dpi=50)
 # pyplot.show()
 pyplot.clf()
@@ -132,7 +150,7 @@ pyplot.title('Normalized Angle')
 pyplot.grid(True)
 pyplot.locator_params(nbins=10)
 pyplot.boxplot(p_norm, vert=False, sym='')
-pyplot.yticks([1, 2, 3], names, rotation='vertical')
+pyplot.yticks([1, 2, 3], files, rotation='vertical')
 pyplot.xlabel('angle in radians')
 pyplot.savefig('img/BoxplotAngleNorm.png',dpi=50)
 # pyplot.show()
