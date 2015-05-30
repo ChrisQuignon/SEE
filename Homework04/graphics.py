@@ -1,4 +1,5 @@
 from matplotlib import pyplot
+from mpl_toolkits.mplot3d import Axes3D
 import csv
 import glob
 from math import sqrt, tan
@@ -9,16 +10,16 @@ from scipy import integrate
 
 
 
-ahead = glob.glob('recordings/teahead*')
-right = glob.glob('recordings/right*')
-left = glob.glob('recordings/left*')
+ahead = glob.glob('recordings/forward_exp/*/*')
+left = glob.glob('recordings/left_exp/*/*')
+right = glob.glob('recordings/right_exp/*/*')
 
 xs = []
 ys = []
 rolls = []
 cams = []
 
-files=['right', 'ahead', 'left']
+files=['left', 'ahead', 'right']
 
 keys = ['time', 'cam', 'tag', 'x', 'y', 'z', 'roll', 'pitch', 'yaw']
 
@@ -35,7 +36,7 @@ for filenames in [right, ahead, left]:
 
             for m in data:
                 m['time'] = int(m['time'])
-                # m['tag'] = int(m['tag'])
+                m['tag'] = int(m['tag'])
                 m['x'] = float(m['x'])
                 m['y'] = float(m['y'])
                 m['z'] = float(m['z'])
@@ -43,26 +44,22 @@ for filenames in [right, ahead, left]:
                 m['pitch'] = float(m['pitch'])
                 m['yaw'] = float(m['yaw'])
 
-            #filter tags
-            data = [d for d in data if d['tag'] == '37599']
+            # FILTER OUTLIER
+            data = [x for x in data if x['y'] < 680]
 
-            #FILTER BY CAMERA
-            data = [d for d in data if d['cam'] == 'lifecam20']
-            ymax = max(data, lambda y : y['y'])
-            print ymax[0]
-            set.append(ymax[0])
+            #FILTER OUTLIER
+            if min([d['y'] for d in data]) > -345:
+                set.extend(data)
 
-            #NO FILTER
-            # set.extend(data)
-
-    # set = sorted(set, key=lambda k: k['time'])
     sets.append(set)
 
 
 for set in sets:
+    #FILTER OUTLIER
     x = [d['x'] for d in set]
     y = [d['y'] for d in set]
     roll = [d['roll'] for d in set]
+
 
     cam = []
     for d in set:
@@ -90,7 +87,8 @@ for i in range(len(xs)):
     pyplot.axes().set_aspect('equal', 'datalim')
     pyplot.grid(True)
     # pyplot.locator_params(nbins=10)
-    pyplot.savefig('img/' + files[i]+'.png')
+    pyplot.savefig('img/' + files[i]+'_c.png')
+    # pyplot.show()
     pyplot.clf()
 
 ##SUBSTRACT MEAN
@@ -115,18 +113,19 @@ for i in range(len(xs)):
         # print r, p
     rs.append(r)
     ps.append(p)
-    pyplot.title('Polar Coordinates ' + files[i])
-    pyplot.grid(True)
-    pyplot.locator_params(nbins=10)
+    ax = pyplot.subplot(111, polar=True)
+    ax.set_title('Polar Coordinates ' + files[i])
+    ax.grid(True)
+    # ax.locator_params(nbins=10)
 
     for j in range(len(r)):
-        pyplot.scatter(p[j], r[j], color = cams[i][j], marker = (3, 0, rolls[i][j]*57.3), facecolor='None', s = 80)
+        ax.plot(p[j], r[j], color = cams[i][j], marker = (3, 0, rolls[i][j]*57.3), linewidth=3)
 
-    pyplot.ylabel('distance in mm')
-    pyplot.xlabel('angle in radians')
-    pyplot.savefig('img/' + files[i]+ '_pc.png')
-    pyplot.clf()
+    # ax.ylabel('distance in mm')
+    # ax.xlabel('angle in radians')
+    pyplot.savefig('img/' + files[i]+ '_pc_c.png')
     # pyplot.show()
+    pyplot.clf()
 
 ##SUBSTRACT MEAN
 p_norm = []
@@ -142,7 +141,7 @@ pyplot.locator_params(nbins=10)
 pyplot.boxplot(rs, sym='')
 pyplot.ylabel('distance in cm')
 pyplot.xticks([1, 2, 3], files, rotation='horizontal')
-pyplot.savefig('img/BoxplotDistance.png',dpi=50)
+pyplot.savefig('img/BoxplotDistance_c.png',dpi=50)
 # pyplot.show()
 pyplot.clf()
 
@@ -152,6 +151,6 @@ pyplot.locator_params(nbins=10)
 pyplot.boxplot(p_norm, vert=False, sym='')
 pyplot.yticks([1, 2, 3], files, rotation='vertical')
 pyplot.xlabel('angle in radians')
-pyplot.savefig('img/BoxplotAngleNorm.png',dpi=50)
+pyplot.savefig('img/BoxplotAngleNorm_c.png',dpi=50)
 # pyplot.show()
 pyplot.clf()
