@@ -1,0 +1,11 @@
+optimization start values:
+kv:  1.0
+kw:  1.0
+bv:  0.0
+bw:  0.0
+
+final values:
+kv:  0.203290609224
+kw:  0.203983273307
+bv:  3.03511134923e-05
+bw:  2.10603928581e-05

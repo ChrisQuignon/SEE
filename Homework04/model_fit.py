@@ -184,21 +184,67 @@ def predict(start, v, w, t, steps):
         r.append(d)
     return r
 
-p = predict((0.0, 0.0, pi/2), 0.1, 1.0, 1.0, 1)
+def predict_alphas(arg, kv=1.0, kw=1.0, bv=0.0, bw=0.0):
+    x, y, theta, v, w, t, steps = arg
+    #velocity in rad
+    # x, y, theta = start
+    d = {
+        'x':x,
+        'y':y,
+        'theta':theta
+        }
+    r = [d]
+    for _ in range(steps):
 
-pyplot.axis('equal')
-pyplot.plot([d['x'] for d in p], [d['y'] for d in p])
-pyplot.show()
+        #ALPHAS
+        v = kv * v + bv
+        w = kw * w + bw
 
+        dv = v * t/steps
+        dvx = np.cos(theta) * dv
+        dvy = np.sin(theta) * dv
+
+        dw = w * t/steps
+        dwx = np.cos(theta+pi/2.0) * dw
+        dwy = np.sin(theta+pi/2.0) * dw
+
+        dx = dwx + dvx
+        dy = dwy + dvy
+
+        dtheta = np.tan(dv/dw)
+
+        theta = theta + dtheta
+        # theta = theta %(2*pi)
+
+        x = x + dx
+        y = y + dy
+
+        d = {
+            'x':x,
+            'y':y,
+            'theta':theta
+            }
+
+        r.append(d)
+    return r
+
+def prediction_wrap(arg, kv, kw, bv, bw):
+    p = predict_alphas(arg, kv, kw, bv, bw)
+    r = [p[1]['x'], p[1]['y'], p[1]['theta']]
+    return r
+
+#PLOT PREDICTION
 for i, direction in enumerate(recordings):
-    pyplot.figure(figsize=(20,10))
+    pyplot.figure(figsize=(6,4))
     for run in direction:
         for d in run:
             pyplot.scatter(d['x'],d['y'], s = 40,  c = 'b', marker = 'o', alpha = 0.4, facecolors='none')
 
-            p = predict((d['x'], d['y'], d['theta']), d['v'], d['w'], d['dt'], 1)
+            # p = predict(d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1)
+            # p = predict_alphas((d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1), 1.0, 1.0, 0.0, 0.0)
             # pyplot.scatter([x['x'] for x in p], [x['y'] for x in p], c = 'g', alpha = 0.2)
-            pyplot.scatter(p[1]['x'], p[1]['y'], c = 'r', marker = 'x', s = 40, alpha = 0.4,)
+            x, y, t = prediction_wrap((d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1), 1.0, 1.0, 0.0, 0.0)
+            pyplot.scatter(x, y, c = 'r', marker = 'x', s = 40, alpha = 0.4)
 
     pyplot.title('Predicted motion ' + files[i])
     pyplot.ylabel('y in mm')
@@ -206,32 +252,81 @@ for i, direction in enumerate(recordings):
     pyplot.axes().set_aspect('equal', 'datalim')
     pyplot.grid(True)
     # # pyplot.locator_params(nbins=10)
-    # pyplot.savefig('img/' + files[i]+'_t.png')
-    pyplot.show()
+    pyplot.savefig('img/predict' + files[i]+'.png')
+    # pyplot.show()
     pyplot.clf()
 
-#
-# def motion_model(xt, xt1):
-#     #Velocity motion Model according to Thrun
-#     x_ = xt['x']
-#     y_ = xt['y']
-#     theta_ = xt['theta']
-#
-#     v = xt['v']
-#     w = xt['w']
-#
-#     x = xt1['x']
-#     y = xt1['y']
-#     theta = xt1['theta']
-#
-#     dtime = xt['time'] - xt1['time']
-#
-#     mu = 0.5 * ((x-x_) * np.cos(theta) + (y-y_)*np.sin(theta))/((y - y_)*cos(theta) - (x-x_)*sin(theta))
-#     xstar = (x+x_)/2.0 + mu * (y-y_)
-#     ystar = (y-y_)/2.0 + mu * (x_ - x)
-#     rstar = np.sqrt((x-xstar)**2 + (y - ystar)**2)
-#     dtheta = np.arctan2(y_ - ystar, x_ - xstar) - np.arctan2(y-ystar, x-xstar)
-#     vhat = dtheta/ dtime * rstar
-#     what = dtheta/ dtime
-#     thetahat = (theta_ -theta)/dtime - what
-#
+
+#MINIMIZE
+x = []
+for i, direction in enumerate(recordings):
+    for run in direction:
+        for d in run[:-1]:
+            #we do not haven obseration for the last point
+            x.append([d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1])
+
+y = []
+for i, direction in enumerate(recordings):
+    for run in direction:
+        for d in run[1:]:
+            #we can not predict the first point
+            y.append([d['x'], d['y'], d['theta']])
+
+def minime(param, x, y):
+    # print x[0]#ALL X
+    # print param
+    kv, kw, bv, bw = param
+
+    # x, y, theta, v, w, t, steps = inp
+    # print len(inp)
+    mses = []
+    for i, arg in enumerate(x):
+        p = predict_alphas(arg, kv, kw, bv, bw)
+        r  = [p[1]['x'], p[1]['y'], p[1]['theta']]
+
+        mse = ((np.asarray(r) - np.asarray(y[i])) ** 2).mean(axis=None)
+        mses.append(mse)
+    # print np.mean(mses)
+    return mses
+
+
+from scipy.optimize import leastsq
+
+print "optimization start values:"
+print 'kv: ', 1.0
+print 'kw: ', 1.0
+print 'bv: ', 0.0
+print 'bw: ', 0.0
+
+alphas, R =  leastsq(func = minime, x0 = (1.0, 1.0, 0.0, 0.0), args=(x, y))
+kv, kw, bv, bw = alphas
+
+print ''
+print 'final values:'
+print 'kv: ', kv
+print 'kw: ', kw
+print 'bv: ', bv
+print 'bw: ', bw
+
+#PLOT MINIMIZED PREDICTION
+for i, direction in enumerate(recordings):
+    pyplot.figure(figsize=(6,4))
+    for run in direction:
+        for d in run:
+            pyplot.scatter(d['x'],d['y'], s = 40,  c = 'b', marker = 'o', alpha = 0.4, facecolors='none')
+
+            # p = predict(d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1)
+            # p = predict_alphas((d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1), 1.0, 1.0, 0.0, 0.0)
+            # pyplot.scatter([x['x'] for x in p], [x['y'] for x in p], c = 'g', alpha = 0.2)
+            x, y, t = prediction_wrap((d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1), kv, kw, bv, bw)
+            pyplot.scatter(x, y, c = 'r', marker = 'x', s = 40, alpha = 0.4)
+
+    pyplot.title('Minimized predicted motion ' + files[i])
+    pyplot.ylabel('y in mm')
+    pyplot.xlabel('x in mm')
+    pyplot.axes().set_aspect('equal', 'datalim')
+    pyplot.grid(True)
+    # # pyplot.locator_params(nbins=10)
+    pyplot.savefig('img/mini_predict_' + files[i]+'_1.png')
+    # pyplot.show()
+    pyplot.clf()
