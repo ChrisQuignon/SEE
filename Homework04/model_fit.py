@@ -144,4 +144,81 @@ for direction in [recordings[0], recordings[2]]:
         x.extend([d['x'] for d in run])
         y.extend([d['y'] for d in run])
     xc, yc, R, residu = leastsq_circle(x, y)
-    centers.append((xc, yc))
+    centers.append((xc, yc, R))
+
+def predict(start, v, w, t, steps):
+    #velocity in rad
+    x, y, theta = start
+    d = {
+        'x':x,
+        'y':y,
+        'theta':theta
+        }
+    r = [d]
+    for _ in range(steps):
+        dv = v * t/steps
+        dvx = np.cos(theta) * dv
+        dvy = np.sin(theta) * dv
+
+        dw = w * t/steps
+        dwx = np.sin(theta) * dw
+        dwy = np.cos(theta) * dw
+
+        dx = dwx + dvx
+        dy = dwy + dvy
+
+        dtheta = 180/pi * np.arctan(dx/dy)
+
+        theta = theta + dtheta
+        theta = theta %(360)
+
+        print x
+        print y
+        print theta
+        print ''
+
+
+        x = x + dx
+        y = y + dy
+
+        d = {
+            'x':x,
+            'y':y,
+            'theta':theta
+            }
+
+        r.append(d)
+    return r
+
+p = predict((0.0, 0.0, 0.0), 1.0, 1.0, 2.0, 4)
+
+pyplot.axis('equal')
+pyplot.plot([d['x'] for d in p], [d['y'] for d in p])
+pyplot.show()
+
+
+#
+# def motion_model(xt, xt1):
+#     #Velocity motion Model according to Thrun
+#     x_ = xt['x']
+#     y_ = xt['y']
+#     theta_ = xt['theta']
+#
+#     v = xt['v']
+#     w = xt['w']
+#
+#     x = xt1['x']
+#     y = xt1['y']
+#     theta = xt1['theta']
+#
+#     dtime = xt['time'] - xt1['time']
+#
+#     mu = 0.5 * ((x-x_) * np.cos(theta) + (y-y_)*np.sin(theta))/((y - y_)*cos(theta) - (x-x_)*sin(theta))
+#     xstar = (x+x_)/2.0 + mu * (y-y_)
+#     ystar = (y-y_)/2.0 + mu * (x_ - x)
+#     rstar = np.sqrt((x-xstar)**2 + (y - ystar)**2)
+#     dtheta = np.arctan2(y_ - ystar, x_ - xstar) - np.arctan2(y-ystar, x-xstar)
+#     vhat = dtheta/ dtime * rstar
+#     what = dtheta/ dtime
+#     thetahat = (theta_ -theta)/dtime - what
+#
