@@ -161,22 +161,16 @@ def predict(start, v, w, t, steps):
         dvy = np.sin(theta) * dv
 
         dw = w * t/steps
-        dwx = np.sin(theta) * dw
-        dwy = np.cos(theta) * dw
+        dwx = np.cos(theta+pi/2.0) * dw
+        dwy = np.sin(theta+pi/2.0) * dw
 
         dx = dwx + dvx
         dy = dwy + dvy
 
-        dtheta = 180/pi * np.arctan(dx/dy)
+        dtheta = np.tan(dv/dw)
 
         theta = theta + dtheta
-        theta = theta %(360)
-
-        print x
-        print y
-        print theta
-        print ''
-
+        # theta = theta %(2*pi)
 
         x = x + dx
         y = y + dy
@@ -190,12 +184,31 @@ def predict(start, v, w, t, steps):
         r.append(d)
     return r
 
-p = predict((0.0, 0.0, 0.0), 1.0, 1.0, 2.0, 4)
+p = predict((0.0, 0.0, pi/2), 0.1, 1.0, 1.0, 1)
 
 pyplot.axis('equal')
 pyplot.plot([d['x'] for d in p], [d['y'] for d in p])
 pyplot.show()
 
+for i, direction in enumerate(recordings):
+    pyplot.figure(figsize=(20,10))
+    for run in direction:
+        for d in run:
+            pyplot.scatter(d['x'],d['y'], s = 40,  c = 'b', marker = 'o', alpha = 0.4, facecolors='none')
+
+            p = predict((d['x'], d['y'], d['theta']), d['v'], d['w'], d['dt'], 1)
+            # pyplot.scatter([x['x'] for x in p], [x['y'] for x in p], c = 'g', alpha = 0.2)
+            pyplot.scatter(p[1]['x'], p[1]['y'], c = 'r', marker = 'x', s = 40, alpha = 0.4,)
+
+    pyplot.title('Predicted motion ' + files[i])
+    pyplot.ylabel('y in mm')
+    pyplot.xlabel('x in mm')
+    pyplot.axes().set_aspect('equal', 'datalim')
+    pyplot.grid(True)
+    # # pyplot.locator_params(nbins=10)
+    # pyplot.savefig('img/' + files[i]+'_t.png')
+    pyplot.show()
+    pyplot.clf()
 
 #
 # def motion_model(xt, xt1):
