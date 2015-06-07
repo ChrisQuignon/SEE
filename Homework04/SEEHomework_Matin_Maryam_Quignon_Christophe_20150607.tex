@@ -1,0 +1,314 @@
+%\documentclass{beamer}
+%\usetheme{Pittsburgh}
+\documentclass{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{default}
+\usepackage[procnames]{listings}
+\usepackage{graphicx}
+%\usepackage[toc,page]{appendix}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{color}
+%\usepackage{csvsimple}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+
+
+
+%Bibliogrpahy?
+\usepackage{bibentry}
+%\nobibliography*
+%\bibentry{ }
+
+
+%Python
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+\lstset{language=Python,
+    basicstyle=\ttfamily\scriptsize,
+    keywordstyle=\color{keywords},
+    commentstyle=\color{comments},
+    stringstyle=\color{red},
+    identifierstyle=\color{green},
+    breaklines = true,
+    columns=fullflexible,
+    %Numbering and tabs
+    %numbers=left,
+    %numberstyle=\tiny\color{gray},
+    %stepnumber=2,
+    %numbersep=1em,
+    tabsize=4,
+    showspaces=false,
+    showstringspaces=false}
+
+\begin{document}
+
+\title{Scientific Experimentation and Evaluation
+}
+\subtitle{
+Assignment: 4.2}
+\author{
+  Quignon, Christophe\\
+  Matin, Maryam
+  %Familyname, Name
+}
+\date{\today}
+
+
+\maketitle
+
+
+\section{Experiment}
+To assure a reliable motion model for this week's assignment, we decided to repeat the recordings. This time we avoided recording at the intersection of two cameras and used a bigger marker to ensure the robot is traceable even in the farthest distance relative to the camera. To make the measurements more accurate and reduce the outliers at the end position we flip the marker and stop recording at the same time .  
+
+
+
+\subsection{Data representation}
+Figures 1 to 3 show the plotted trajectories for each of the runs in cartesian coordinates. As depicted in the in figures, there are a number of outliers at the beggining and ending of each path which are most likely caused by flipping the marker up and down at these points.
+
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img_second_run/Cartesian_ahead.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+
+\caption{Recordings of the ahead movements in cartesian coordinate}
+\label{fig:outliers}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img_second_run/Cartesian_right.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+
+\caption{Recordings of the right movements in cartesian coordinate}
+\label{fig:outliers}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img_second_run/Cartesian_left.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+
+\caption{Recordings of the left movements in cartesian coordinate}
+\label{fig:outliers}
+\end{figure}
+
+To have a better understanding of the robots behaviour with respect to the commanded motions, we tried fitting two circles to the observed data of the right and left truns as suggested. Fig. 4 and Table. 1 show this observation. As depicted in the table and this figure there is an obvious trend in the robot movement towards the right side which is the reason for the smaller diameter of the right-turn circle. Removing the outliers at the ending points should expectedly reduce this difference between the two circle sizes however this doesn't resolve the issue completely. This behavoiur was also observed in the previous experiments using the manual marker method so it can be due to a systematic error.\\
+
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img_second_run/Circle_fit.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+
+\caption{Two fitted circles for the right (upper circle) and left turns (lower circle). }
+\label{fig:circles}
+\end{figure}
+
+
+
+\begin{table}[h]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+              & xc            & yc             & R             & residu        \\ \hline
+Circle\_right & 2521.4521653  & 4650.19830336  & 2582.61636419 & 96358.0886634 \\ \hline
+Circle\_left  & 2483.99772597 & -1960.45625309 & 4040.6562426  & 38695.8080245 \\ \hline
+\end{tabular}
+\caption{Paramters of the fitted circles}
+\label{my-label}
+\end{table}
+
+
+\section{Estimating the model parameters }
+
+\subsection{Prediction function}
+%TODO:
+
+% what is the prediction function exactly?
+%how the prediction function was derived and how it works?
+
+
+Figures 5 to 7 represent the distribution based on the prediction function. As observed the predicted poses don't fit completely to the observed data.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/predictahead.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+
+\caption{Results of the prediction function for forward motion. }
+\label{fig:prediction}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/predictright.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+
+\caption{Results of the prediction function for right turn. }
+\label{fig:prediction}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/predictleft.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+
+\caption{Results of the prediction function for left turn.}
+\label{fig:prediction}
+\end{figure}
+
+\subsection{Optimization}
+
+%TODO:
+
+The starting values of motion parameters optimization and their final values after the iterative error minimization procedure can be observed in modelfit.out and also in table 2. 
+
+%how the starting values were guessed?
+%how many iterations needed for the correct fit?
+%what is exactly the final optimized motion model? 
+
+\begin{table}[h]
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+                          & kv             & kw             & bv                & bw            \\ \hline
+optimization start values & 1.0            & 1.0            & 0.0               & 0.0           \\ \hline
+final values              & 0.203290609224 & 0.203983273307 & 3.03511134923e-05 & 38695.8080245 \\ \hline
+\end{tabular}
+\caption{Initial guesses of the motion parameters (alpha) and their final values after iterative optimization.}
+\label{Motion parameters}
+\end{table}
+
+
+Figures 8 to 10 depict the results of the optimized motion model. As represented the Motion model after removal of systematic errors, efficiently describes the observed trajectories. 
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/mini_predict_ahead_1.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+
+\caption{Results of the optimized prediction function for forward motion. }
+\label{fig:prediction}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/mini_predict_right_1.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+
+\caption{Results of the optimized prediction function for forward motion. }
+\label{fig:prediction}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/mini_predict_left_1.png}
+  %\caption{}
+  %\label{fig:}
+\end{minipage}%
+
+\caption{Results of the optimized prediction function for forward motion. }
+\label{fig:prediction}
+\end{figure}
+
+
+
+
+
+
+\section{Appendix}
+\subsection{Alpha values}
+See modelfit.out
+%\lstinputlisting[language=python]{histogram_f.out}
+
+
+\subsection{Code}
+For a complete view see \href{https://github.com/ChrisQuignon/SEE/tree/master/Homework04}{github.com/ChrisQuignon/SEE}\\
+For the trajectories please see new\_graphics.py\\
+\subsubsection{new\_graphics.py}
+\lstinputlisting[language=python]{new_graphics.py}
+For the motion model approximation and circle fit please see model\_fit.py \\
+\subsubsection{model\_fit.py}
+\lstinputlisting[language=python]{model_fit.py}
+
+
+
+
+
+
+
+
+%BIBLIOGRPAHY!
+\bibliographystyle{plain}%amsalpha
+\bibliography{bib.bib}
+%\bibentry{}
+
+
+%COPY AND PASTE FROM HERE
+
+%\begin{enumerate}
+% \item
+%\end{enumerate}
+
+%\href{link}{text}
+
+%\begin[Language=Python]{lstlisting}
+%#PYTHON CODE HERE
+%\end{lstlisting}
+
+%\lstinputlisting[language=Java]{ }
+
+%\csvautotabular[separator=semicolon]{data.csv}
+
+%\begin{figure}
+% \center
+% \includegraphics[width= cm]{img/ }
+% \caption{}
+%\end{figure}
+
+
+
+\end{document}
