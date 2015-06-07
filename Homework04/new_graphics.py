@@ -111,7 +111,7 @@ for i, direction in enumerate(recordings):
 for i, direction in enumerate(recordings):
 
     for run in direction:
-        pyplot.scatter([d['x'] for d in run], [d['y'] for d in run], c = [d['z'] for d in run])
+        pyplot.scatter([d['x'] for d in run], [d['y'] for d in run])#, c = [d['z'] for d in run])
     # pyplot.scatter(m_x, m_y, color = 'g', zorder = 1, s = 40, alpha = 0.5)
 
     pyplot.title('Cartesian Coordinates ' + files[i])
@@ -120,8 +120,8 @@ for i, direction in enumerate(recordings):
     pyplot.axes().set_aspect('equal', 'datalim')
     pyplot.grid(True)
     # # pyplot.locator_params(nbins=10)
-    # pyplot.savefig('img/' + files[i]+'_t.png')
-    pyplot.show()
+    pyplot.savefig('img/' + files[i]+'_t.png')
+    # pyplot.show()
     pyplot.clf()
 
 #CIRCLE FIT adopted from https://gist.github.com/lorenzoriano/6799568

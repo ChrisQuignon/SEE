@@ -59,7 +59,6 @@ for i, run in enumerate(recordings[2]):
     recordings[2][i] = run
 
 #CUT OFF THE MARKER FLAPS
-#Maybe with v or w, after completion
 
 def complete(run):
     r = []
@@ -111,7 +110,6 @@ for i, direction in enumerate(recordings):
 
 import numpy as np
 from scipy import optimize
-# from matplotlib import pyplot as plt, cm, colors
 from math import pi
 
 def calc_R(x,y, xc, yc):
@@ -186,8 +184,6 @@ def predict(start, v, w, t, steps):
 
 def predict_alphas(arg, kv=1.0, kw=1.0, bv=0.0, bw=0.0):
     x, y, theta, v, w, t, steps = arg
-    #velocity in rad
-    # x, y, theta = start
     d = {
         'x':x,
         'y':y,
@@ -214,7 +210,6 @@ def predict_alphas(arg, kv=1.0, kw=1.0, bv=0.0, bw=0.0):
         dtheta = np.tan(dv/dw)
 
         theta = theta + dtheta
-        # theta = theta %(2*pi)
 
         x = x + dx
         y = y + dy
@@ -240,9 +235,6 @@ for i, direction in enumerate(recordings):
         for d in run:
             pyplot.scatter(d['x'],d['y'], s = 40,  c = 'b', marker = 'o', alpha = 0.4, facecolors='none')
 
-            # p = predict(d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1)
-            # p = predict_alphas((d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1), 1.0, 1.0, 0.0, 0.0)
-            # pyplot.scatter([x['x'] for x in p], [x['y'] for x in p], c = 'g', alpha = 0.2)
             x, y, t = prediction_wrap((d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1), 1.0, 1.0, 0.0, 0.0)
             pyplot.scatter(x, y, c = 'r', marker = 'x', s = 40, alpha = 0.4)
 
@@ -251,7 +243,6 @@ for i, direction in enumerate(recordings):
     pyplot.xlabel('x in mm')
     pyplot.axes().set_aspect('equal', 'datalim')
     pyplot.grid(True)
-    # # pyplot.locator_params(nbins=10)
     pyplot.savefig('img/predict' + files[i]+'.png')
     # pyplot.show()
     pyplot.clf()
@@ -273,12 +264,9 @@ for i, direction in enumerate(recordings):
             y.append([d['x'], d['y'], d['theta']])
 
 def minime(param, x, y):
-    # print x[0]#ALL X
-    # print param
+
     kv, kw, bv, bw = param
 
-    # x, y, theta, v, w, t, steps = inp
-    # print len(inp)
     mses = []
     for i, arg in enumerate(x):
         p = predict_alphas(arg, kv, kw, bv, bw)
@@ -286,7 +274,7 @@ def minime(param, x, y):
 
         mse = ((np.asarray(r) - np.asarray(y[i])) ** 2).mean(axis=None)
         mses.append(mse)
-    # print np.mean(mses)
+    print 'mean mses: ', np.mean(mses)
     return mses
 
 
@@ -315,9 +303,6 @@ for i, direction in enumerate(recordings):
         for d in run:
             pyplot.scatter(d['x'],d['y'], s = 40,  c = 'b', marker = 'o', alpha = 0.4, facecolors='none')
 
-            # p = predict(d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1)
-            # p = predict_alphas((d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1), 1.0, 1.0, 0.0, 0.0)
-            # pyplot.scatter([x['x'] for x in p], [x['y'] for x in p], c = 'g', alpha = 0.2)
             x, y, t = prediction_wrap((d['x'], d['y'], d['theta'], d['v'], d['w'], d['dt'], 1), kv, kw, bv, bw)
             pyplot.scatter(x, y, c = 'r', marker = 'x', s = 40, alpha = 0.4)
 
@@ -325,8 +310,7 @@ for i, direction in enumerate(recordings):
     pyplot.ylabel('y in mm')
     pyplot.xlabel('x in mm')
     pyplot.axes().set_aspect('equal', 'datalim')
-    pyplot.grid(True)
-    # # pyplot.locator_params(nbins=10)
+    pyplot.grid(True
     pyplot.savefig('img/mini_predict_' + files[i]+'_1.png')
     # pyplot.show()
     pyplot.clf()
