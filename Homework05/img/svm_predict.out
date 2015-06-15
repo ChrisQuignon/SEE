@@ -1,0 +1,215 @@
+[LibSVM]...*.*
+optimization finished, #iter = 4723
+obj = -319.368957, rho = -0.758861
+nSV = 2941, nBSV = 146
+.......*...*
+optimization finished, #iter = 10341
+obj = -1313.839495, rho = 0.311528
+nSV = 6443, nBSV = 297
+......*..*
+optimization finished, #iter = 8811
+obj = -1151.707468, rho = 0.147379
+nSV = 5574, nBSV = 132
+......*..*
+optimization finished, #iter = 8626
+obj = -1064.499143, rho = 0.079996
+nSV = 5335, nBSV = 80
+......*...*
+optimization finished, #iter = 9207
+obj = -1226.394405, rho = 0.200166
+nSV = 5764, nBSV = 198
+.....*..*
+optimization finished, #iter = 7597
+obj = -942.718957, rho = -0.114689
+nSV = 4698, nBSV = 149
+.....*..*
+optimization finished, #iter = 7620
+obj = -915.024746, rho = -0.083868
+nSV = 4626, nBSV = 96
+......*..*
+optimization finished, #iter = 8487
+obj = -1188.588780, rho = 0.042040
+nSV = 5284, nBSV = 198
+.....*..*
+optimization finished, #iter = 7364
+obj = -841.483999, rho = -0.178469
+nSV = 4493, nBSV = 154
+....*..*
+optimization finished, #iter = 6689
+obj = -340.901555, rho = 0.877343
+nSV = 4289, nBSV = 165
+...*..*
+optimization finished, #iter = 5706
+obj = -397.501908, rho = 0.842857
+nSV = 3478, nBSV = 222
+...*..*
+optimization finished, #iter = 5268
+obj = -342.755690, rho = 0.802126
+nSV = 3214, nBSV = 158
+....*.*
+optimization finished, #iter = 5687
+obj = -378.151287, rho = 0.855130
+nSV = 3520, nBSV = 211
+...*.*
+optimization finished, #iter = 4473
+obj = -335.006110, rho = 0.720970
+nSV = 2650, nBSV = 164
+...*.*
+optimization finished, #iter = 4468
+obj = -370.419355, rho = 0.738953
+nSV = 2596, nBSV = 205
+...*..*
+optimization finished, #iter = 5401
+obj = -503.996316, rho = 0.845982
+nSV = 3210, nBSV = 347
+...*.*
+optimization finished, #iter = 4422
+obj = -358.564341, rho = 0.710356
+nSV = 2548, nBSV = 188
+........*...*
+optimization finished, #iter = 11337
+obj = -1791.361512, rho = -0.170792
+nSV = 7216, nBSV = 553
+.......*...*
+optimization finished, #iter = 10629
+obj = -1430.713643, rho = -0.233788
+nSV = 6723, nBSV = 290
+........*...*
+optimization finished, #iter = 11512
+obj = -1968.819807, rho = -0.126186
+nSV = 7379, nBSV = 707
+.......*...*
+optimization finished, #iter = 10111
+obj = -1264.433198, rho = -0.444093
+nSV = 6240, nBSV = 452
+.......*..*
+optimization finished, #iter = 9932
+obj = -1183.479625, rho = -0.392436
+nSV = 6007, nBSV = 394
+.......*...*
+optimization finished, #iter = 10495
+obj = -1427.589301, rho = -0.295842
+nSV = 6581, nBSV = 440
+.......*..*
+optimization finished, #iter = 9710
+obj = -1017.552586, rho = -0.469810
+nSV = 5825, nBSV = 324
+......*...*
+optimization finished, #iter = 9419
+obj = -1243.683584, rho = -0.058071
+nSV = 5894, nBSV = 105
+........*...*
+optimization finished, #iter = 11083
+obj = -2205.824184, rho = 0.046579
+nSV = 7187, nBSV = 999
+......*..*
+optimization finished, #iter = 8177
+obj = -1010.106848, rho = -0.260514
+nSV = 5139, nBSV = 200
+......*..*
+optimization finished, #iter = 8898
+obj = -1292.247185, rho = -0.234340
+nSV = 5472, nBSV = 498
+.......*...*
+optimization finished, #iter = 10003
+obj = -1559.286498, rho = -0.138546
+nSV = 6156, nBSV = 515
+......*..*
+optimization finished, #iter = 8622
+obj = -1124.194359, rho = -0.328058
+nSV = 5226, nBSV = 434
+.......*..*
+optimization finished, #iter = 9630
+obj = -1301.717665, rho = 0.109749
+nSV = 5993, nBSV = 149
+......*..*
+optimization finished, #iter = 8149
+obj = -983.748505, rho = -0.193589
+nSV = 5018, nBSV = 174
+......*..*
+optimization finished, #iter = 8356
+obj = -1067.061670, rho = -0.171968
+nSV = 5020, nBSV = 269
+......*..*
+optimization finished, #iter = 8773
+obj = -1165.363959, rho = -0.053264
+nSV = 5466, nBSV = 138
+.......*..*
+optimization finished, #iter = 9905
+obj = -1588.190647, rho = -0.295267
+nSV = 5742, nBSV = 875
+......*..*
+optimization finished, #iter = 8588
+obj = -1119.152868, rho = -0.314820
+nSV = 5358, nBSV = 305
+......*...*
+optimization finished, #iter = 9044
+obj = -1229.360614, rho = -0.297971
+nSV = 5492, nBSV = 408
+.......*...*
+optimization finished, #iter = 10456
+obj = -1671.508308, rho = -0.207879
+nSV = 6367, nBSV = 630
+......*..*
+optimization finished, #iter = 8649
+obj = -1076.012650, rho = -0.381188
+nSV = 5231, nBSV = 385
+.....*.*
+optimization finished, #iter = 6994
+obj = -806.896671, rho = 0.031963
+nSV = 4216, nBSV = 25
+.....*..*
+optimization finished, #iter = 7690
+obj = -1033.332746, rho = 0.154255
+nSV = 4827, nBSV = 241
+....*..*
+optimization finished, #iter = 6746
+obj = -746.874768, rho = -0.061271
+nSV = 4077, nBSV = 66
+.....*..*
+optimization finished, #iter = 7836
+obj = -1080.238334, rho = 0.122770
+nSV = 4825, nBSV = 254
+.....*..*
+optimization finished, #iter = 7815
+obj = -1135.450161, rho = -0.084919
+nSV = 4497, nBSV = 417
+.....*..*
+optimization finished, #iter = 7770
+obj = -1030.584980, rho = -0.217705
+nSV = 4780, nBSV = 327
+Total nSV = 31845
+
+Confusion matrix, without normalization
+[[ 926    2   37    1    0    2    0    4    8    0]
+ [   2 1102   13    2    1    0    4    1    8    2]
+ [   1    0  972   17    1   25    8    4    4    0]
+ [   0    2   85  857    0   35    0   17    8    6]
+ [   0    1   54    0  900    1    1    0    0   25]
+ [   7    0   75   64    3  716    4    5   14    4]
+ [   2    3   68    0    5    6  866    0    8    0]
+ [   0    9   48   12    9    8    0  908    9   25]
+ [   4    6   47   19    1   17    8   11  857    4]
+ [   1    7   30   13   31    6    0    7    9  905]]
+Normalized confusion matrix
+[[  9.45e-01   2.04e-03   3.78e-02   1.02e-03   0.00e+00   2.04e-03
+    0.00e+00   4.08e-03   8.16e-03   0.00e+00]
+ [  1.76e-03   9.71e-01   1.15e-02   1.76e-03   8.81e-04   0.00e+00
+    3.52e-03   8.81e-04   7.05e-03   1.76e-03]
+ [  9.69e-04   0.00e+00   9.42e-01   1.65e-02   9.69e-04   2.42e-02
+    7.75e-03   3.88e-03   3.88e-03   0.00e+00]
+ [  0.00e+00   1.98e-03   8.42e-02   8.49e-01   0.00e+00   3.47e-02
+    0.00e+00   1.68e-02   7.92e-03   5.94e-03]
+ [  0.00e+00   1.02e-03   5.50e-02   0.00e+00   9.16e-01   1.02e-03
+    1.02e-03   0.00e+00   0.00e+00   2.55e-02]
+ [  7.85e-03   0.00e+00   8.41e-02   7.17e-02   3.36e-03   8.03e-01
+    4.48e-03   5.61e-03   1.57e-02   4.48e-03]
+ [  2.09e-03   3.13e-03   7.10e-02   0.00e+00   5.22e-03   6.26e-03
+    9.04e-01   0.00e+00   8.35e-03   0.00e+00]
+ [  0.00e+00   8.75e-03   4.67e-02   1.17e-02   8.75e-03   7.78e-03
+    0.00e+00   8.83e-01   8.75e-03   2.43e-02]
+ [  4.11e-03   6.16e-03   4.83e-02   1.95e-02   1.03e-03   1.75e-02
+    8.21e-03   1.13e-02   8.80e-01   4.11e-03]
+ [  9.91e-04   6.94e-03   2.97e-02   1.29e-02   3.07e-02   5.95e-03
+    0.00e+00   6.94e-03   8.92e-03   8.97e-01]]
+
