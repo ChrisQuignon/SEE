@@ -98,7 +98,6 @@ for clf in clfs:
 
     #binray classification is needed for ROCs
     classifier = OneVsRestClassifier(clf)
-
     classifier.fit(x_train, y_train)
 
     pbs = classifier.predict_proba(x_test)
